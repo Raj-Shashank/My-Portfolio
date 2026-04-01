@@ -1,0 +1,1179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Shashank Raj — Data Analyst | Portfolio DB</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300&family=Clash+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --bg: #f8f8f6;
+        --white: #ffffff;
+        --ink: #111110;
+        --green: #00c853;
+        --green-dim: #e8f5e9;
+        --blue: #1a73e8;
+        --yellow: #f9a825;
+        --red: #e53935;
+        --purple: #7c3aed;
+        --muted: #888884;
+        --border: #e8e8e4;
+        --mono: "JetBrains Mono", monospace;
+        --display: "Clash Display", sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--mono);
+        overflow-x: hidden;
+        min-height: 100vh;
+        width: 100%;
+      }
+
+      /* LAYOUT (DESKTOP: fixed sidebar + margin-left) */
+      .shell {
+        display: block;
+        min-height: 100vh;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      /* SIDEBAR (fixed, always visible) */
+      .sidebar {
+        background: var(--ink);
+        color: #e8e8e4;
+        padding: 2rem 1.5rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 260px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        z-index: 50;
+        box-shadow: 1px 0 0 rgba(0, 0, 0, 0.08);
+      }
+      .sidebar-logo {
+        font-family: var(--display);
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.25rem;
+        letter-spacing: -0.02em;
+      }
+      .sidebar-logo span {
+        color: var(--green);
+      }
+      .sidebar-title {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 2rem;
+      }
+
+      .db-label {
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #555552;
+        margin-bottom: 0.75rem;
+        margin-top: 1.5rem;
+      }
+      .db-item {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 12px;
+        color: #aaa8a0;
+        padding: 0.4rem 0.6rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.15s;
+        text-decoration: none;
+        margin-bottom: 2px;
+      }
+      .db-item:hover,
+      .db-item.active {
+        background: rgba(255, 255, 255, 0.07);
+        color: #fff;
+      }
+      .db-item .icon {
+        font-size: 14px;
+        width: 18px;
+        text-align: center;
+      }
+      .db-item.active .icon {
+        color: var(--green);
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .status-dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        background: var(--green);
+        border-radius: 50%;
+        margin-right: 6px;
+        animation: blink 1.8s ease-in-out infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+      .status-text {
+        font-size: 11px;
+        color: #888884;
+      }
+      .contact-mini {
+        margin-top: 1rem;
+      }
+      .contact-mini a {
+        display: block;
+        font-size: 11px;
+        color: #666660;
+        text-decoration: none;
+        margin-bottom: 4px;
+        transition: color 0.15s;
+      }
+      .contact-mini a:hover {
+        color: var(--green);
+      }
+
+      /* MAIN CONTENT (offset by sidebar width) */
+      .main {
+        margin-left: 260px;
+        width: auto;
+        max-width: 100%;
+        overflow-x: hidden;
+        background: var(--bg);
+        min-height: 100vh;
+      }
+
+      /* TOP BAR (STICKY) */
+      .topbar {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 0.75rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        flex-wrap: wrap;
+      }
+      .tab {
+        font-size: 12px;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        cursor: pointer;
+        color: var(--muted);
+        background: transparent;
+        transition: all 0.15s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .tab.active,
+      .tab:hover {
+        background: var(--ink);
+        color: #fff;
+        border-color: var(--ink);
+      }
+      .topbar-right {
+        margin-left: auto;
+        font-size: 11px;
+        color: var(--muted);
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .download-btn {
+        font-family: var(--mono);
+        font-size: 11px;
+        background: var(--green);
+        color: #fff;
+        border: none;
+        padding: 0.4rem 0.9rem;
+        border-radius: 4px;
+        cursor: pointer;
+        letter-spacing: 0.05em;
+        transition: background 0.15s;
+        text-decoration: none;
+      }
+      .download-btn:hover {
+        background: #00a844;
+      }
+      #live-time {
+        font-weight: 400;
+      }
+
+      /* QUERY EDITOR */
+      .query-panel {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem 2rem;
+      }
+      .query-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+      .query-header-label {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .run-btn {
+        margin-left: auto;
+        font-family: var(--mono);
+        font-size: 11px;
+        background: var(--green);
+        color: #fff;
+        border: none;
+        padding: 0.45rem 1.1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        letter-spacing: 0.05em;
+        transition: background 0.15s;
+      }
+      .run-btn:hover {
+        background: #00a844;
+      }
+      .query-box {
+        font-family: var(--mono);
+        font-size: 13px;
+        line-height: 1.7;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 1.25rem 1.5rem;
+        min-height: 80px;
+        position: relative;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .cursor-blink {
+        display: inline-block;
+        width: 8px;
+        height: 14px;
+        background: var(--green);
+        vertical-align: middle;
+        animation: blink 1s step-end infinite;
+        margin-left: 1px;
+      }
+
+      /* RESULTS SECTION */
+      .results-area {
+        padding: 2rem;
+      }
+      .result-block {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin-bottom: 1.75rem;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(12px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      }
+      .result-block.show {
+        opacity: 1;
+        transform: none;
+      }
+      .result-header {
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .rh-left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .rh-label {
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .rh-rows {
+        font-size: 11px;
+        color: var(--green);
+        font-weight: 700;
+      }
+      .rh-time {
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      .result-table-wrapper {
+        overflow-x: auto;
+        width: 100%;
+        scrollbar-width: thin;
+      }
+      .result-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        min-width: 500px;
+      }
+      .result-table th {
+        background: var(--bg);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 500;
+        padding: 0.9rem 1.25rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+        white-space: nowrap;
+      }
+      .result-table td {
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+        color: var(--ink);
+        font-size: 13px;
+        line-height: 1.5;
+        word-break: break-word;
+      }
+      .result-table tr:last-child td {
+        border-bottom: none;
+      }
+      .result-table tr:hover td {
+        background: var(--bg);
+      }
+      .cell-tag {
+        display: inline-block;
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        padding: 0.2rem 0.7rem;
+        border-radius: 20px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .tag-green {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+      .tag-blue {
+        background: #e3f2fd;
+        color: #1565c0;
+      }
+      .tag-yellow {
+        background: #fffde7;
+        color: #f57f17;
+      }
+      .tag-purple {
+        background: #f3e5f5;
+        color: #6a1b9a;
+      }
+      .tag-red {
+        background: #ffebee;
+        color: #c62828;
+      }
+      .tag-gray {
+        background: #f5f5f5;
+        color: #555;
+      }
+      .pct-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        min-width: 140px;
+      }
+      .pct-track {
+        flex: 1;
+        height: 4px;
+        background: var(--border);
+        border-radius: 4px;
+        min-width: 80px;
+      }
+      .pct-fill {
+        height: 100%;
+        background: var(--green);
+        border-radius: 4px;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .pct-val {
+        font-size: 11px;
+        color: var(--green);
+        font-weight: 700;
+        min-width: 30px;
+      }
+      .metric-val {
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .metric-up {
+        color: var(--green);
+      }
+      .cell-mono {
+        font-family: var(--mono);
+        color: var(--blue);
+        font-size: 12px;
+      }
+
+      /* HERO CARD */
+      .hero-result {
+        padding: 2rem 2rem;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: start;
+        gap: 2.5rem;
+      }
+      .hero-name-big {
+        font-family: var(--display);
+        font-size: clamp(2.8rem, 5vw, 4.8rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        color: var(--ink);
+        margin-bottom: 0.6rem;
+      }
+      .hero-role {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 1.25rem;
+        letter-spacing: -0.2px;
+      }
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .hero-metrics {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        min-width: 220px;
+      }
+      .hm-cell {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1rem 0.75rem;
+        text-align: center;
+      }
+      .hm-num {
+        font-family: var(--display);
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--green);
+        display: block;
+        line-height: 1.1;
+      }
+      .hm-lbl {
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 0.4rem;
+        display: block;
+      }
+
+      /* QUERY NAV */
+      .query-nav {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        margin-top: 0.75rem;
+      }
+      .qnav-btn {
+        font-family: var(--mono);
+        font-size: 11px;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--border);
+        background: var(--white);
+        color: var(--muted);
+        border-radius: 40px;
+        cursor: pointer;
+        transition: all 0.2s;
+        letter-spacing: 0.03em;
+      }
+      .qnav-btn:hover,
+      .qnav-btn.active {
+        background: var(--ink);
+        color: var(--green);
+        border-color: var(--ink);
+      }
+
+      /* CONTACT RESULT */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 1.8rem;
+        gap: 1.8rem;
+      }
+      .contact-field {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.8rem;
+      }
+      .cf-key {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.4rem;
+      }
+      .cf-val {
+        font-size: 13px;
+        color: var(--ink);
+        word-break: break-word;
+      }
+      .cf-val a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+      .cf-val a:hover {
+        text-decoration: underline;
+      }
+      .hire-btn {
+        display: inline-block;
+        margin-top: 0.5rem;
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        background: var(--green);
+        color: #fff;
+        padding: 0.7rem 1.8rem;
+        border-radius: 40px;
+        text-decoration: none;
+        transition: background 0.15s;
+      }
+      .hire-btn:hover {
+        background: #00a844;
+      }
+
+      /* FOOTER */
+      .footer-bar {
+        background: var(--white);
+        border-top: 1px solid var(--border);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        color: var(--muted);
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1024px) {
+        .hero-result {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        .hero-metrics {
+          grid-template-columns: repeat(4, 1fr);
+          min-width: 0;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 1.2rem;
+        }
+      }
+      @media (max-width: 860px) {
+        .sidebar {
+          position: relative;
+          width: 100%;
+          flex-direction: row;
+          flex-wrap: wrap;
+          padding: 1rem 1.25rem;
+          gap: 1rem;
+          align-items: center;
+          height: auto;
+          bottom: auto;
+        }
+        .sidebar-footer,
+        .db-label:not(:first-of-type),
+        .db-item:not(.active) {
+          display: none;
+        }
+        .sidebar .db-item.active {
+          display: flex;
+        }
+        .main {
+          margin-left: 0;
+        }
+        .topbar {
+          padding: 0.6rem 1rem;
+        }
+        .results-area {
+          padding: 1.25rem;
+        }
+        .hero-metrics {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .hm-num {
+          font-size: 1.6rem;
+        }
+      }
+      @media (max-width: 640px) {
+        .result-table th,
+        .result-table td {
+          padding: 0.7rem 0.9rem;
+          font-size: 12px;
+        }
+        .hero-name-big {
+          font-size: 2rem;
+        }
+        .query-panel {
+          padding: 1rem;
+        }
+        .query-box {
+          padding: 0.9rem 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div>
+          <div class="sidebar-logo">SHASHANK<span>.</span>RAJ</div>
+          <div class="sidebar-title">Personal Database v1.0</div>
+
+          <div class="db-label">Tables</div>
+          <a href="#" class="db-item active" onclick="runQuery('profile')"
+            ><span class="icon">◈</span>analyst_profile</a
+          >
+          <a href="#" class="db-item" onclick="runQuery('skills')"
+            ><span class="icon">◈</span>technical_skills</a
+          >
+          <a href="#" class="db-item" onclick="runQuery('experience')"
+            ><span class="icon">◈</span>work_experience</a
+          >
+          <a href="#" class="db-item" onclick="runQuery('projects')"
+            ><span class="icon">◈</span>projects</a
+          >
+          <a href="#" class="db-item" onclick="runQuery('certs')"
+            ><span class="icon">◈</span>certifications</a
+          >
+          <a href="#" class="db-item" onclick="runQuery('education')"
+            ><span class="icon">◈</span>education</a
+          >
+          <a href="#" class="db-item" onclick="runQuery('contact')"
+            ><span class="icon">◈</span>contact_info</a
+          >
+
+          <div class="db-label">Views</div>
+          <a href="#" class="db-item" onclick="runQuery('impact')"
+            ><span class="icon">▤</span>impact_summary</a
+          >
+          <a href="#" class="db-item" onclick="runQuery('stack')"
+            ><span class="icon">▤</span>full_stack_view</a
+          >
+        </div>
+
+        <div class="sidebar-footer">
+          <div>
+            <span class="status-dot"></span
+            ><span class="status-text">Available for hire</span>
+          </div>
+          <div class="contact-mini">
+            <a href="mailto:shashankraj1010@gmail.com"
+              >shashankraj1010@gmail.com</a
+            >
+            <a href="tel:+918269607817">+91 82696 07817</a>
+            <a href="#">LinkedIn ↗</a>
+            <a href="#">GitHub ↗</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <div class="main">
+        <!-- TOPBAR -->
+        <div class="topbar">
+          <span class="tab active">Query Editor</span>
+          <span
+            class="tab"
+            onclick="
+              document
+                .getElementById('results')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+            >Resume</span
+          >
+          <span class="tab" onclick="runQuery('impact')">Impact View</span>
+          <div class="topbar-right">
+            <button class="download-btn" onclick="downloadResume()">
+              📄 Download Resume (PDF)
+            </button>
+            <span>IST <span id="live-time">--:--:--</span> · Pune, India</span>
+          </div>
+        </div>
+
+        <!-- QUERY EDITOR -->
+        <div class="query-panel">
+          <div class="query-header">
+            <span class="query-header-label">SQL Query</span>
+            <button class="run-btn" onclick="runCurrentQuery()">
+              ▶ Run Query
+            </button>
+          </div>
+          <div class="query-box" id="querybox">
+            <span class="q-cmt"
+              >-- Welcome. This portfolio is a live database.<br />-- Click any
+              table or run a query below.<br /><br
+            /></span>
+            <span id="query-text"></span><span class="cursor-blink"></span>
+          </div>
+          <div style="margin-top: 1rem">
+            <div class="query-nav" id="qnav">
+              <button class="qnav-btn active" onclick="runQuery('profile')">
+                Profile
+              </button>
+              <button class="qnav-btn" onclick="runQuery('skills')">
+                Skills
+              </button>
+              <button class="qnav-btn" onclick="runQuery('experience')">
+                Experience
+              </button>
+              <button class="qnav-btn" onclick="runQuery('projects')">
+                Projects
+              </button>
+              <button class="qnav-btn" onclick="runQuery('certs')">
+                Certifications
+              </button>
+              <button class="qnav-btn" onclick="runQuery('education')">
+                Education
+              </button>
+              <button class="qnav-btn" onclick="runQuery('impact')">
+                Impact
+              </button>
+              <button class="qnav-btn" onclick="runQuery('contact')">
+                Contact
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="results-area" id="results">
+          <div id="result-container"></div>
+        </div>
+
+        <div class="footer-bar">
+          <span>sr_analytics.db · SQLite 3.42 · UTF-8</span>
+          <span>© 2026 Shashank Raj · All rights reserved</span>
+        </div>
+      </div>
+      <!-- /main -->
+    </div>
+    <!-- /shell -->
+
+    <script>
+      // ---- CLOCK ----
+      function updateClock() {
+        const now = new Date().toLocaleTimeString("en-IN", {
+          timeZone: "Asia/Kolkata",
+          hour12: false,
+        });
+        const timeEl = document.getElementById("live-time");
+        if (timeEl) timeEl.textContent = now;
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // ---- SQL QUERY TEXTS ----
+      const QUERY_TEXTS = {
+        profile: `SELECT\n  name, role, location, experience,\n  status, education\nFROM analyst_profile\nWHERE id = 1;`,
+        skills: `SELECT\n  skill_name, category,\n  proficiency_pct, level\nFROM technical_skills\nORDER BY proficiency_pct DESC;`,
+        experience: `SELECT\n  company, role, period,\n  key_achievement, impact_pct\nFROM work_experience\nORDER BY start_date DESC;`,
+        projects: `SELECT\n  project_name, type,\n  tools_used, accuracy, outcome\nFROM projects\nWHERE featured = TRUE\nORDER BY impact DESC;`,
+        certs: `SELECT\n  cert_name, issuer,\n  platform, issued_date\nFROM certifications\nORDER BY issued_date DESC;`,
+        education: `SELECT\n  degree, institution,\n  specialization, graduation_year\nFROM education\nWHERE analyst_id = 1;`,
+        impact: `SELECT\n  metric, value, context\nFROM impact_summary\nWHERE analyst_id = 1;`,
+        stack: `SELECT\n  tool, category, expertise\nFROM full_stack_view\nORDER BY category, expertise DESC;`,
+        contact: `SELECT\n  field, value\nFROM contact_info\nWHERE analyst_id = 1;`,
+      };
+
+      // ---- RESULT HTML GENERATORS (updated as requested) ----
+      const RESULT_GENERATORS = {
+        profile: () => `
+      <div class="result-block show">
+        <div class="result-header">
+          <div class="rh-left"><span class="rh-label">analyst_profile</span><span class="rh-rows">1 row returned</span></div>
+          <span class="rh-time">0.003s</span>
+        </div>
+        <div class="hero-result">
+          <div>
+            <div class="hero-name-big">Shashank Raj</div>
+            <div class="hero-role">Data Analyst · Python · SQL · Power BI · E-Commerce Analytics</div>
+            <div class="hero-tags">
+              <span class="cell-tag tag-green">● Available for hire</span>
+              <span class="cell-tag tag-blue">Pune, India</span>
+              <span class="cell-tag tag-purple">1+ Year Experience</span>
+              <span class="cell-tag tag-yellow">B.Tech CSE</span>
+            </div>
+            <div style="margin-top:1.25rem;font-size:12px;color:var(--muted);line-height:1.8;max-width:500px;">
+              Data Analyst specializing in end-to-end analytics — from raw data wrangling to executive dashboards. 
+              Built reporting pipelines, and e-commerce analytics systems that moved real revenue.
+            </div>
+            <a href="mailto:shashankraj1010@gmail.com" class="hire-btn" style="margin-top:1.5rem;display:inline-block;">SELECT * FROM opportunities;</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="hm-cell"><span class="hm-num counter" data-val="55">0</span><span class="hm-lbl">% Faster Reports</span></div>
+            <div class="hm-cell"><span class="hm-num counter" data-val="400">0</span><span class="hm-lbl">Listings Optimized</span></div>
+            <div class="hm-cell"><span class="hm-num counter" data-val="85">0</span><span class="hm-lbl">% ML Accuracy</span></div>
+            <div class="hm-cell"><span class="hm-num counter" data-val="15">0</span><span class="hm-lbl">% Revenue ↑</span></div>
+          </div>
+        </div>
+      </div>`,
+
+        skills: () => {
+          const skillsData = [
+            ["Python · Pandas · NumPy", "Data Engineering", 90, "Expert"],
+            ["Power BI · DAX · Power Query", "Visualization", 88, "Expert"],
+            ["EDA · Business Reporting · KPIs", "Analytics", 92, "Expert"],
+            ["SQL · MySQL · Joins", "Databases", 85, "Advanced"],
+            ["Advanced Excel · Pivot Tables", "Reporting", 85, "Advanced"],
+            ["AWS S3 · EC2 · Cloud", "Cloud", 65, "Intermediate"],
+          ]; // removed ML row
+          return `
+        <div class="result-block show">
+          <div class="result-header"><div class="rh-left"><span class="rh-label">technical_skills</span><span class="rh-rows">${skillsData.length} rows returned</span></div><span class="rh-time">0.001s</span></div>
+          <div class="result-table-wrapper"><table class="result-table"><thead> <tr><th>#</th><th>skill_name</th><th>category</th><th>proficiency_pct</th><th>level</th></tr></thead><tbody>
+            ${skillsData
+              .map(
+                ([name, cat, pct, lvl], i) => `
+              <tr>
+                <td style="color:var(--muted)">${i + 1}</td>
+                <td><strong>${name}</strong></td>
+                <td><span class="cell-tag ${cat === "Data Engineering" ? "tag-blue" : cat === "Visualization" ? "tag-purple" : cat === "Analytics" ? "tag-green" : cat === "Databases" ? "tag-yellow" : cat === "Machine Learning" ? "tag-red" : "tag-gray"}">${cat}</span></td>
+                <td><div class="pct-bar"><div class="pct-track"><div class="pct-fill" data-w="${pct / 100}"></div></div><span class="pct-val">${pct}%</span></div></td>
+                <td><span class="cell-tag ${lvl === "Expert" ? "tag-green" : lvl === "Advanced" ? "tag-blue" : "tag-gray"}">${lvl}</span></td>
+              </tr>
+            `,
+              )
+              .join("")}
+          </tbody></table></div>
+        </div>`;
+        },
+
+        experience: () => `
+      <div class="result-block show">
+        <div class="result-header"><div class="rh-left"><span class="rh-label">work_experience</span><span class="rh-rows">2 rows returned</span></div><span class="rh-time">0.002s</span></div>
+        <div class="result-table-wrapper"><table class="result-table"><thead><tr><th>#</th><th>company</th><th>role</th><th>period</th><th>key_achievement</th><th>impact</th></tr></thead><tbody>
+          <tr><td style="color:var(--muted)">1</td><td><strong>Aurafloral Studio</strong><br><span style="color:var(--muted);font-size:11px">Pune, India</span></td><td><span class="cell-tag tag-green">Data Analyst</span></td><td style="white-space:nowrap">Nov 2025 – Present</td><td>Python automation cut reporting from 20→8 hrs/week. Built Power BI dashboards for 100+ Amazon & Flipkart listings.</td><td><span class="metric-val metric-up">+55% speed</span></td></tr>
+          <tr><td style="color:var(--muted)">2</td><td><strong>RB2F</strong><br><span style="color:var(--muted);font-size:11px">Pune, India</span></td><td><span class="cell-tag tag-blue">Trainee Analyst</span></td><td style="white-space:nowrap">Jun – Oct 2025</td><td>Optimized 300+ Amazon listings with Helium 10 & Keepa. Python pipelines cut manual effort 40%. SQL dashboards drove 15% ROI increase.</td><td><span class="metric-val metric-up">+15% revenue</span></td></tr>
+        </tbody></table></div>
+      </div>`,
+
+        projects: () => {
+          const projectsData = [
+            [
+              "Banking Risk Analytics Dashboard",
+              "SQL + BI",
+              "Power BI · Pandas · SQL<br>Logistic Regression",
+              "85% accuracy predicting credit default. 5,000+ records processed.",
+              '<a href="#" style="color:var(--blue)">GitHub ↗</a>',
+            ],
+          ]; // only one project left
+          return `
+        <div class="result-block show">
+          <div class="result-header"><div class="rh-left"><span class="rh-label">projects</span><span class="rh-rows">${projectsData.length} row returned</span></div><span class="rh-time">0.004s</span></div>
+          <div class="result-table-wrapper"><table class="result-table"><thead><tr><th>#</th><th>project_name</th><th>type</th><th>tools_used</th><th>outcome</th><th>link</th></tr></thead><tbody>
+            ${projectsData
+              .map(
+                ([name, type, tools, outcome, link], i) => `
+              <tr><td style="color:var(--muted)">${i + 1}</td><td><strong>${name}</strong><br><span class="cell-tag tag-yellow">★ Featured</span></td><td><span class="cell-tag tag-red">${type}</span></td><td style="font-size:11px">${tools}</td><td style="font-size:11px">${outcome}</td><td>${link}</td></tr>
+            `,
+              )
+              .join("")}
+          </tbody></table></div>
+        </div>`;
+        },
+
+        certs: () => `
+      <div class="result-block show">
+        <div class="result-header"><div class="rh-left"><span class="rh-label">certifications</span><span class="rh-rows">3 rows returned</span></div><span class="rh-time">0.001s</span></div>
+        <div class="result-table-wrapper"><table class="result-table"><thead><tr><th>#</th><th>cert_name</th><th>issuer</th><th>platform</th><th>issued_date</th></tr></thead><tbody>
+          <tr><td style="color:var(--muted)">1</td><td><strong>Tata Data Visualization</strong></td><td>TATA Group</td><td><span class="cell-tag tag-blue">Forage</span></td><td class="cell-mono">2025-01</td></tr>
+          <tr><td style="color:var(--muted)">2</td><td><strong>Deloitte Data Analytics</strong></td><td>Deloitte</td><td><span class="cell-tag tag-blue">Forage</span></td><td class="cell-mono">2025-08</td></tr>
+          <tr><td style="color:var(--muted)">3</td><td><strong>AWS Cloud Virtual Internship</strong></td><td>Amazon Web Services</td><td><span class="cell-tag tag-yellow">Eduskills</span></td><td class="cell-mono">2023-07</td></tr>
+        </tbody></table></div>
+      </div>`,
+
+        education: () => `
+      <div class="result-block show">
+        <div class="result-header"><div class="rh-left"><span class="rh-label">education</span><span class="rh-rows">1 row returned</span></div><span class="rh-time">0.001s</span></div>
+        <div class="result-table-wrapper"><table class="result-table"><thead><tr><th>#</th><th>degree</th><th>institution</th><th>specialization</th><th>graduation_year</th></tr></thead><tbody>
+          <tr><td style="color:var(--muted)">1</td><td><strong>B.Tech · Computer Science & Engineering</strong></td><td>MIT ADT University</td><td><span class="cell-tag tag-purple">Cloud Computing Spec.</span></td><td class="cell-mono">2025-11</td></tr>
+        </tbody></table></div>
+      </div>`,
+
+        impact: () => {
+          const impactData = [
+            [
+              "Reporting Speed",
+              "55% faster",
+              "Python automation at Aurafloral (20 hrs → 8 hrs/week)",
+            ],
+            [
+              "Revenue Impact",
+              "8% increase",
+              "Product tier analysis — top 3 & bottom 5 identification",
+            ],
+            [
+              "Data Accuracy",
+              "15% improvement",
+              "Automated Python cleaning feeding Power BI",
+            ],
+            [
+              "Manual Effort Saved",
+              "40% reduction",
+              "Pandas pipelines replacing manual Excel at RB2F",
+            ],
+            [
+              "Revenue (RB2F)",
+              "15% increase",
+              "High-margin product identification via SQL analysis",
+            ],
+            [
+              "ROI Improvement",
+              "15% increase",
+              "SQL-driven ad-hoc analysis & dashboard insights",
+            ],
+            [
+              "Listings Optimized",
+              "400+ products",
+              "Amazon & Flipkart across both roles",
+            ],
+          ]; // removed ML row
+          return `
+        <div class="result-block show">
+          <div class="result-header"><div class="rh-left"><span class="rh-label">impact_summary VIEW</span><span class="rh-rows">${impactData.length} rows returned</span></div><span class="rh-time">0.002s</span></div>
+          <div class="result-table-wrapper"><table class="result-table"><thead><tr><th>#</th><th>metric</th><th>value</th><th>context</th></tr></thead><tbody>
+            ${impactData
+              .map(
+                ([m, v, c], i) => `
+              <tr><td style="color:var(--muted)">${i + 1}</td><td>${m}</td><td><strong class="metric-up">${v}</strong></td><td style="font-size:11px;color:var(--muted)">${c}</td></tr>
+            `,
+              )
+              .join("")}
+          </tbody></table></div>
+        </div>`;
+        },
+
+        stack: () => `
+      <div class="result-block show">
+        <div class="result-header"><div class="rh-left"><span class="rh-label">full_stack_view</span><span class="rh-rows">12 rows returned</span></div><span class="rh-time">0.001s</span></div>
+        <div class="result-table-wrapper"><table class="result-table"><thead><tr><th>#</th><th>tool</th><th>category</th><th>expertise</th></tr></thead><tbody>
+          ${[
+            ["Pandas", "Python", "Expert"],
+            ["NumPy", "Python", "Expert"],
+            ["Automation Scripts", "Python", "Advanced"],
+            ["Power BI", "Visualization", "Expert"],
+            ["DAX", "Visualization", "Expert"],
+            ["Power Query", "Visualization", "Advanced"],
+            ["MySQL", "Database", "Advanced"],
+            ["SQL Joins & Aggregations", "Database", "Advanced"],
+            ["Advanced Excel", "Reporting", "Advanced"],
+            ["Pivot Tables & Charts", "Reporting", "Advanced"],
+            ["AWS S3", "Cloud", "Intermediate"],
+            ["EC2", "Cloud", "Intermediate"],
+          ]
+            .map(
+              ([t, c, e], i) =>
+                `<tr><td style="color:var(--muted)">${i + 1}</td><td><strong>${t}</strong></td><td><span class="cell-tag ${c === "Python" ? "tag-blue" : c === "Visualization" ? "tag-purple" : c === "Database" ? "tag-yellow" : c === "Cloud" ? "tag-green" : "tag-gray"}">${c}</span></td><td><span class="cell-tag ${e === "Expert" ? "tag-green" : e === "Advanced" ? "tag-blue" : "tag-gray"}">${e}</span></td></tr>`,
+            )
+            .join("")}
+        </tbody></table></div>
+      </div>`,
+
+        contact: () => `
+      <div class="result-block show">
+        <div class="result-header"><div class="rh-left"><span class="rh-label">contact_info</span><span class="rh-rows">6 rows returned</span></div><span class="rh-time">0.001s</span></div>
+        <div class="contact-grid">
+          <div class="contact-field"><div class="cf-key">name</div><div class="cf-val">Shashank Raj</div></div>
+          <div class="contact-field"><div class="cf-key">role</div><div class="cf-val">Data Analyst</div></div>
+          <div class="contact-field"><div class="cf-key">email</div><div class="cf-val"><a href="mailto:shashankraj1010@gmail.com">shashankraj1010@gmail.com</a></div></div>
+          <div class="contact-field"><div class="cf-key">phone</div><div class="cf-val"><a href="tel:+918269607817">+91 82696 07817</a></div></div>
+          <div class="contact-field"><div class="cf-key">location</div><div class="cf-val">Pune, Maharashtra, India</div></div>
+          <div class="contact-field"><div class="cf-key">status</div><div class="cf-val"><span class="cell-tag tag-green">● Open to opportunities</span></div></div>
+          <div><div class="cf-key">linkedin</div><div class="cf-val"><a href="#">linkedin.com/in/shashankraj ↗</a></div></div>
+          <div><div class="cf-key">github</div><div class="cf-val"><a href="#">github.com/shashankraj ↗</a></div></div>
+        </div>
+        <div style="padding:0 1.5rem 1.5rem;"><a href="mailto:shashankraj1010@gmail.com" class="hire-btn">INSERT INTO team VALUES ('Shashank');</a></div>
+      </div>`,
+      };
+
+      // ---- TYPEWRITER ----
+      let typeTimer = null;
+      function typeQuery(sqlText, callback) {
+        clearTimeout(typeTimer);
+        const querySpan = document.getElementById("query-text");
+        if (!querySpan) return;
+        querySpan.innerHTML = "";
+        let i = 0;
+        function writeChar() {
+          if (i >= sqlText.length) {
+            if (callback) callback();
+            return;
+          }
+          const ch = sqlText[i++];
+          if (ch === "\n") querySpan.innerHTML += "\n";
+          else if (ch === " ") querySpan.innerHTML += " ";
+          else querySpan.innerHTML += ch;
+          typeTimer = setTimeout(writeChar, i < 10 ? 0 : 22);
+        }
+        writeChar();
+      }
+
+      // ---- SHOW RESULT ----
+      let currentQuery = "profile";
+      function showResult(queryId) {
+        const container = document.getElementById("result-container");
+        if (!container) return;
+        const generator = RESULT_GENERATORS[queryId];
+        if (generator) {
+          container.innerHTML = generator();
+          setTimeout(() => {
+            document.querySelectorAll(".pct-fill").forEach((bar) => {
+              const w = parseFloat(bar.dataset.w);
+              if (!isNaN(w)) bar.style.transform = `scaleX(${w})`;
+            });
+            document.querySelectorAll(".counter").forEach((counter) => {
+              const target = parseInt(counter.dataset.val, 10);
+              let start = null;
+              function animate(now) {
+                if (!start) start = now;
+                const p = Math.min((now - start) / 1200, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                counter.textContent = Math.round(eased * target);
+                if (p < 1) requestAnimationFrame(animate);
+              }
+              requestAnimationFrame(animate);
+            });
+          }, 60);
+        } else {
+          container.innerHTML =
+            '<div class="result-block show">⚠️ Data not found</div>';
+        }
+        setTimeout(() => {
+          document
+            .getElementById("results")
+            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 200);
+      }
+
+      function runQuery(name, e) {
+        if (e) e.preventDefault();
+        if (!QUERY_TEXTS[name]) return;
+        currentQuery = name;
+        // Update active states
+        document.querySelectorAll(".db-item").forEach((el) => {
+          const onclickAttr = el.getAttribute("onclick");
+          if (onclickAttr && onclickAttr.includes(`'${name}'`))
+            el.classList.add("active");
+          else el.classList.remove("active");
+        });
+        document.querySelectorAll(".qnav-btn").forEach((btn) => {
+          const onclickAttr = btn.getAttribute("onclick");
+          if (onclickAttr && onclickAttr.includes(`'${name}'`))
+            btn.classList.add("active");
+          else btn.classList.remove("active");
+        });
+        typeQuery(QUERY_TEXTS[name], () => showResult(name));
+      }
+
+      function runCurrentQuery() {
+        runQuery(currentQuery);
+      }
+
+      // ---- RESUME DOWNLOAD ----
+      function downloadResume() {
+        // Create a dummy PDF-like file (in reality you would replace with actual resume PDF)
+        const resumeContent = `Shashank Raj - Data Analyst
+Contact: shashankraj1010@gmail.com | +91 82696 07817
+Pune, India
+
+Experience:
+- Data Analyst at Aurafloral Studio (Nov 2025 – Present)
+- Trainee Analyst at RB2F (Jun – Oct 2025)
+
+Skills: Python, SQL, Power BI, EDA, Excel, AWS
+Education: B.Tech CSE (Cloud Computing) - MIT ADT University, 2025
+Certifications: Tata Data Visualization, Deloitte Data Analytics, AWS Cloud Internship
+Projects: Banking Risk Analytics Dashboard (85% accuracy)
+Achievements: 55% faster reporting, 8% revenue uplift, 400+ listings optimized
+`;
+        const blob = new Blob([resumeContent], { type: "application/pdf" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.href = url;
+        link.download = "Shashank_Raj_Resume.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }
+
+      // ---- ATTACH SIDEBAR CLICK HANDLERS ----
+      document.querySelectorAll(".db-item").forEach((el) => {
+        el.addEventListener("click", function (e) {
+          e.preventDefault();
+          const onclickAttr = this.getAttribute("onclick");
+          if (onclickAttr) {
+            const match = onclickAttr.match(/'([^']+)'/);
+            if (match) runQuery(match[1]);
+          }
+        });
+      });
+
+      // ---- INITIAL LOAD ----
+      window.addEventListener("load", () => {
+        runQuery("profile");
+      });
+    </script>
+  </body>
+</html>
