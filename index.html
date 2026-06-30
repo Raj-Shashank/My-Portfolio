@@ -2,13 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <title>Shashank Raj — Data Analyst | Portfolio DB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shashank Raj — Data Analyst</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300&family=Clash+Display:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -20,19 +17,21 @@
         padding: 0;
       }
       :root {
-        --bg: #f8f8f6;
-        --white: #ffffff;
-        --ink: #111110;
-        --green: #00c853;
-        --green-dim: #e8f5e9;
-        --blue: #1a73e8;
-        --yellow: #f9a825;
-        --red: #e53935;
-        --purple: #7c3aed;
-        --muted: #888884;
-        --border: #e8e8e4;
-        --mono: "JetBrains Mono", monospace;
-        --display: "Clash Display", sans-serif;
+        --bg: #0c0c0b;
+        --surface: #131312;
+        --surface2: #191918;
+        --border: #252523;
+        --border2: #2e2e2b;
+        --ink: #f0ede6;
+        --ink2: #a8a49c;
+        --ink3: #5a5751;
+        --accent: #d4f06e;
+        --accent2: #f0d46e;
+        --accent3: #6ed4f0;
+        --red: #f06e6e;
+        --mono: "DM Mono", monospace;
+        --serif: "DM Serif Display", serif;
+        --sans: "Syne", sans-serif;
       }
       html {
         scroll-behavior: smooth;
@@ -42,102 +41,142 @@
         background: var(--bg);
         color: var(--ink);
         font-family: var(--mono);
+        min-height: 100vh;
         overflow-x: hidden;
-        min-height: 100vh;
-        width: 100%;
       }
-
-      /* LAYOUT (DESKTOP: fixed sidebar + margin-left) */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+        opacity: 0.03;
+        pointer-events: none;
+        z-index: 9999;
+      }
       .shell {
-        display: block;
+        display: flex;
         min-height: 100vh;
-        width: 100%;
-        max-width: 100%;
       }
 
-      /* SIDEBAR (fixed, always visible) */
+      /* SIDEBAR */
       .sidebar {
-        background: var(--ink);
-        color: #e8e8e4;
-        padding: 2rem 1.5rem;
+        width: 240px;
+        min-width: 240px;
+        background: var(--surface);
+        border-right: 1px solid var(--border);
         position: fixed;
         top: 0;
         left: 0;
         bottom: 0;
-        width: 260px;
         display: flex;
         flex-direction: column;
-        overflow-y: auto;
+        padding: 2rem 1.5rem;
         z-index: 50;
-        box-shadow: 1px 0 0 rgba(0, 0, 0, 0.08);
+        overflow-y: auto;
       }
-      .sidebar-logo {
-        font-family: var(--display);
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: #fff;
-        margin-bottom: 0.25rem;
+      .logo-mark {
+        display: flex;
+        align-items: baseline;
+        gap: 0;
+        margin-bottom: 0.2rem;
+      }
+      .logo-sr {
+        font-family: var(--serif);
+        font-size: 2.2rem;
+        color: var(--ink);
+        line-height: 1;
         letter-spacing: -0.02em;
       }
-      .sidebar-logo span {
-        color: var(--green);
+      .logo-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        margin-left: 3px;
+        margin-bottom: 7px;
+        flex-shrink: 0;
       }
-      .sidebar-title {
-        font-size: 10px;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 2rem;
-      }
-
-      .db-label {
+      .logo-sub {
         font-size: 9px;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: #555552;
-        margin-bottom: 0.75rem;
-        margin-top: 1.5rem;
+        color: var(--ink3);
+        margin-bottom: 2.5rem;
       }
-      .db-item {
+      .nav-section {
+        font-size: 8px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--ink3);
+        margin-bottom: 0.6rem;
+        margin-top: 1.6rem;
+        padding-left: 0.5rem;
+      }
+      .nav-item {
         display: flex;
         align-items: center;
-        gap: 0.6rem;
-        font-size: 12px;
-        color: #aaa8a0;
-        padding: 0.4rem 0.6rem;
-        border-radius: 4px;
+        gap: 0.7rem;
+        font-size: 11.5px;
+        color: var(--ink3);
+        padding: 0.5rem 0.7rem;
+        border-radius: 6px;
         cursor: pointer;
-        transition: all 0.15s;
         text-decoration: none;
-        margin-bottom: 2px;
+        transition: all 0.18s ease;
+        margin-bottom: 1px;
+        position: relative;
       }
-      .db-item:hover,
-      .db-item.active {
-        background: rgba(255, 255, 255, 0.07);
-        color: #fff;
+      .nav-item:hover {
+        color: var(--ink);
+        background: var(--surface2);
       }
-      .db-item .icon {
-        font-size: 14px;
-        width: 18px;
+      .nav-item.active {
+        color: var(--accent);
+        background: rgba(212, 240, 110, 0.07);
+      }
+      .nav-item.active::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 25%;
+        bottom: 25%;
+        width: 2px;
+        background: var(--accent);
+        border-radius: 2px;
+      }
+      .nav-icon {
+        font-size: 13px;
+        width: 16px;
         text-align: center;
+        opacity: 0.7;
       }
-      .db-item.active .icon {
-        color: var(--green);
+      .nav-item.active .nav-icon {
+        opacity: 1;
       }
-
       .sidebar-footer {
         margin-top: auto;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
       }
-      .status-dot {
-        display: inline-block;
-        width: 7px;
-        height: 7px;
-        background: var(--green);
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(212, 240, 110, 0.1);
+        border: 1px solid rgba(212, 240, 110, 0.2);
+        border-radius: 40px;
+        padding: 0.3rem 0.8rem;
+        font-size: 10px;
+        color: var(--accent);
+        letter-spacing: 0.06em;
+        margin-bottom: 1rem;
+      }
+      .status-blink {
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
         border-radius: 50%;
-        margin-right: 6px;
-        animation: blink 1.8s ease-in-out infinite;
+        animation: blink 2s ease-in-out infinite;
       }
       @keyframes blink {
         0%,
@@ -145,579 +184,969 @@
           opacity: 1;
         }
         50% {
-          opacity: 0.3;
+          opacity: 0.2;
         }
       }
-      .status-text {
-        font-size: 11px;
-        color: #888884;
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
       }
-      .contact-mini {
-        margin-top: 1rem;
-      }
-      .contact-mini a {
-        display: block;
-        font-size: 11px;
-        color: #666660;
+      .contact-links a {
+        font-size: 10px;
+        color: var(--ink3);
         text-decoration: none;
-        margin-bottom: 4px;
         transition: color 0.15s;
       }
-      .contact-mini a:hover {
-        color: var(--green);
+      .contact-links a:hover {
+        color: var(--accent);
       }
 
-      /* MAIN CONTENT (offset by sidebar width) */
+      /* MAIN */
       .main {
-        margin-left: 260px;
-        width: auto;
-        max-width: 100%;
-        overflow-x: hidden;
-        background: var(--bg);
+        margin-left: 240px;
+        flex: 1;
         min-height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
 
-      /* TOP BAR (STICKY) */
+      /* TOPBAR */
       .topbar {
-        background: var(--white);
+        background: var(--surface);
         border-bottom: 1px solid var(--border);
-        padding: 0.75rem 2rem;
+        padding: 0 2rem;
+        height: 52px;
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 0.5rem;
         position: sticky;
         top: 0;
         z-index: 40;
-        flex-wrap: wrap;
       }
-      .tab {
-        font-size: 12px;
-        padding: 0.4rem 1rem;
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        cursor: pointer;
-        color: var(--muted);
+      .tab-btn {
+        font-family: var(--mono);
+        font-size: 11px;
+        padding: 0.35rem 1rem;
         background: transparent;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: var(--ink3);
+        cursor: pointer;
         transition: all 0.15s;
-        text-decoration: none;
-        display: inline-block;
+        letter-spacing: 0.04em;
       }
-      .tab.active,
-      .tab:hover {
-        background: var(--ink);
-        color: #fff;
-        border-color: var(--ink);
+      .tab-btn:hover {
+        color: var(--ink);
+        border-color: var(--border2);
+      }
+      .tab-btn.active {
+        background: var(--surface2);
+        color: var(--ink);
+        border-color: var(--border2);
       }
       .topbar-right {
         margin-left: auto;
-        font-size: 11px;
-        color: var(--muted);
-        white-space: nowrap;
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 1.25rem;
       }
-      .download-btn {
+      .time-display {
+        font-size: 10px;
+        color: var(--ink3);
+        letter-spacing: 0.08em;
+      }
+      .dl-btn {
         font-family: var(--mono);
-        font-size: 11px;
-        background: var(--green);
-        color: #fff;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        padding: 0.4rem 1.1rem;
+        background: var(--accent);
+        color: #0c0c0b;
         border: none;
-        padding: 0.4rem 0.9rem;
         border-radius: 4px;
         cursor: pointer;
-        letter-spacing: 0.05em;
-        transition: background 0.15s;
-        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.15s;
       }
-      .download-btn:hover {
-        background: #00a844;
-      }
-      #live-time {
-        font-weight: 400;
+      .dl-btn:hover {
+        opacity: 0.85;
       }
 
-      /* QUERY EDITOR */
+      /* QUERY PANEL */
       .query-panel {
-        background: var(--white);
+        background: var(--surface);
         border-bottom: 1px solid var(--border);
-        padding: 1.5rem 2rem;
+        padding: 1.25rem 2rem;
       }
-      .query-header {
+      .qp-header {
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.9rem;
       }
-      .query-header-label {
-        font-size: 10px;
-        letter-spacing: 0.15em;
+      .qp-label {
+        font-size: 9px;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
-        color: var(--muted);
+        color: var(--ink3);
       }
       .run-btn {
         margin-left: auto;
         font-family: var(--mono);
-        font-size: 11px;
-        background: var(--green);
-        color: #fff;
-        border: none;
-        padding: 0.45rem 1.1rem;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        background: transparent;
+        border: 1px solid var(--border2);
+        color: var(--ink2);
+        padding: 0.35rem 1rem;
         border-radius: 4px;
         cursor: pointer;
-        letter-spacing: 0.05em;
-        transition: background 0.15s;
+        transition: all 0.15s;
       }
       .run-btn:hover {
-        background: #00a844;
+        border-color: var(--accent);
+        color: var(--accent);
       }
       .query-box {
-        font-family: var(--mono);
-        font-size: 13px;
-        line-height: 1.7;
         background: var(--bg);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 1.25rem 1.5rem;
-        min-height: 80px;
-        position: relative;
-        overflow-x: auto;
+        border: 1px solid var(--border2);
+        border-radius: 8px;
+        padding: 1.1rem 1.4rem;
+        font-family: var(--mono);
+        font-size: 12.5px;
+        line-height: 1.8;
+        color: var(--ink2);
+        min-height: 72px;
         white-space: pre-wrap;
         word-break: break-word;
       }
-      .cursor-blink {
+      .q-kw {
+        color: #9d8cf0;
+      }
+      .q-col {
+        color: var(--accent3);
+      }
+      .q-tbl {
+        color: var(--accent2);
+      }
+      .q-cmt {
+        color: var(--ink3);
+        font-style: italic;
+      }
+      .cursor {
         display: inline-block;
-        width: 8px;
-        height: 14px;
-        background: var(--green);
+        width: 7px;
+        height: 13px;
+        background: var(--accent);
         vertical-align: middle;
+        margin-left: 2px;
         animation: blink 1s step-end infinite;
-        margin-left: 1px;
+      }
+      .qnav {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        margin-top: 0.9rem;
+      }
+      .qnav-pill {
+        font-family: var(--mono);
+        font-size: 10px;
+        padding: 0.3rem 0.85rem;
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 40px;
+        color: var(--ink3);
+        cursor: pointer;
+        transition: all 0.18s;
+        letter-spacing: 0.04em;
+      }
+      .qnav-pill:hover {
+        border-color: var(--border2);
+        color: var(--ink2);
+      }
+      .qnav-pill.active {
+        background: rgba(212, 240, 110, 0.1);
+        border-color: rgba(212, 240, 110, 0.35);
+        color: var(--accent);
       }
 
-      /* RESULTS SECTION */
+      /* RESULTS */
       .results-area {
         padding: 2rem;
+        flex: 1;
       }
-      .result-block {
-        background: var(--white);
+      .result-card {
+        background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 12px;
-        margin-bottom: 1.75rem;
+        margin-bottom: 1.5rem;
         overflow: hidden;
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(14px);
         transition:
-          opacity 0.5s ease,
-          transform 0.5s ease;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+          opacity 0.45s ease,
+          transform 0.45s ease;
       }
-      .result-block.show {
+      .result-card.show {
         opacity: 1;
         transform: none;
       }
-      .result-header {
-        background: var(--bg);
+      .card-header {
+        padding: 0.85rem 1.5rem;
         border-bottom: 1px solid var(--border);
-        padding: 0.75rem 1.5rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+        background: var(--bg);
       }
-      .rh-left {
+      .ch-left {
         display: flex;
         align-items: center;
         gap: 0.75rem;
       }
-      .rh-label {
-        font-size: 10px;
-        letter-spacing: 0.12em;
+      .ch-label {
+        font-size: 9px;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: var(--muted);
+        color: var(--ink3);
       }
-      .rh-rows {
-        font-size: 11px;
-        color: var(--green);
-        font-weight: 700;
-      }
-      .rh-time {
+      .ch-rows {
         font-size: 10px;
-        color: var(--muted);
+        color: var(--accent);
+        font-weight: 500;
+      }
+      .ch-time {
+        font-size: 9px;
+        color: var(--ink3);
       }
 
-      .result-table-wrapper {
-        overflow-x: auto;
-        width: 100%;
-        scrollbar-width: thin;
-      }
-      .result-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 13px;
-        min-width: 500px;
-      }
-      .result-table th {
-        background: var(--bg);
-        font-size: 11px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--muted);
-        font-weight: 500;
-        padding: 0.9rem 1.25rem;
-        text-align: left;
-        border-bottom: 1px solid var(--border);
-        white-space: nowrap;
-      }
-      .result-table td {
-        padding: 1rem 1.25rem;
-        border-bottom: 1px solid var(--border);
-        vertical-align: top;
-        color: var(--ink);
-        font-size: 13px;
-        line-height: 1.5;
-        word-break: break-word;
-      }
-      .result-table tr:last-child td {
-        border-bottom: none;
-      }
-      .result-table tr:hover td {
-        background: var(--bg);
-      }
-      .cell-tag {
-        display: inline-block;
-        font-size: 10px;
-        letter-spacing: 0.06em;
-        padding: 0.2rem 0.7rem;
-        border-radius: 20px;
-        font-weight: 500;
-        white-space: nowrap;
-      }
-      .tag-green {
-        background: #e8f5e9;
-        color: #2e7d32;
-      }
-      .tag-blue {
-        background: #e3f2fd;
-        color: #1565c0;
-      }
-      .tag-yellow {
-        background: #fffde7;
-        color: #f57f17;
-      }
-      .tag-purple {
-        background: #f3e5f5;
-        color: #6a1b9a;
-      }
-      .tag-red {
-        background: #ffebee;
-        color: #c62828;
-      }
-      .tag-gray {
-        background: #f5f5f5;
-        color: #555;
-      }
-      .pct-bar {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        min-width: 140px;
-      }
-      .pct-track {
-        flex: 1;
-        height: 4px;
-        background: var(--border);
-        border-radius: 4px;
-        min-width: 80px;
-      }
-      .pct-fill {
-        height: 100%;
-        background: var(--green);
-        border-radius: 4px;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      .pct-val {
-        font-size: 11px;
-        color: var(--green);
-        font-weight: 700;
-        min-width: 30px;
-      }
-      .metric-val {
-        font-weight: 700;
-        color: var(--ink);
-      }
-      .metric-up {
-        color: var(--green);
-      }
-      .cell-mono {
-        font-family: var(--mono);
-        color: var(--blue);
-        font-size: 12px;
-      }
-
-      /* HERO CARD */
-      .hero-result {
-        padding: 2rem 2rem;
+      /* HERO */
+      .hero-body {
+        padding: 2.5rem 2rem;
         display: grid;
-        grid-template-columns: 1fr auto;
+        grid-template-columns: 1fr 260px;
+        gap: 3rem;
         align-items: start;
-        gap: 2.5rem;
       }
-      .hero-name-big {
-        font-family: var(--display);
-        font-size: clamp(2.8rem, 5vw, 4.8rem);
-        font-weight: 700;
+      .hero-eyebrow {
+        font-size: 9px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.75rem;
+      }
+      .hero-name {
+        font-family: var(--serif);
+        font-size: clamp(3rem, 5vw, 5.5rem);
+        line-height: 0.95;
         letter-spacing: -0.02em;
-        line-height: 1.1;
         color: var(--ink);
-        margin-bottom: 0.6rem;
+        margin-bottom: 1rem;
       }
-      .hero-role {
-        font-size: 14px;
-        color: var(--muted);
-        margin-bottom: 1.25rem;
-        letter-spacing: -0.2px;
+      .hero-name em {
+        color: var(--accent);
+        font-style: italic;
+      }
+      .hero-desc {
+        font-size: 12px;
+        line-height: 1.9;
+        color: var(--ink2);
+        max-width: 440px;
+        margin-bottom: 1.5rem;
       }
       .hero-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
+        gap: 0.4rem;
+        margin-bottom: 1.75rem;
       }
-      .hero-metrics {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        min-width: 220px;
-      }
-      .hm-cell {
-        background: var(--bg);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 1rem 0.75rem;
-        text-align: center;
-      }
-      .hm-num {
-        font-family: var(--display);
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--green);
-        display: block;
-        line-height: 1.1;
-      }
-      .hm-lbl {
+      .htag {
         font-size: 9px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-top: 0.4rem;
-        display: block;
+        letter-spacing: 0.1em;
+        padding: 0.3rem 0.8rem;
+        border-radius: 40px;
+        border: 1px solid var(--border2);
+        color: var(--ink2);
       }
-
-      /* QUERY NAV */
-      .query-nav {
+      .htag-accent {
+        border-color: rgba(212, 240, 110, 0.3);
+        color: var(--accent);
+        background: rgba(212, 240, 110, 0.06);
+      }
+      .htag-blue {
+        border-color: rgba(110, 212, 240, 0.3);
+        color: var(--accent3);
+      }
+      .cta-row {
         display: flex;
-        gap: 0.6rem;
-        flex-wrap: wrap;
-        margin-top: 0.75rem;
+        gap: 0.75rem;
+        align-items: center;
       }
-      .qnav-btn {
+      .cta-primary {
         font-family: var(--mono);
         font-size: 11px;
-        padding: 0.4rem 1rem;
-        border: 1px solid var(--border);
-        background: var(--white);
-        color: var(--muted);
-        border-radius: 40px;
-        cursor: pointer;
-        transition: all 0.2s;
-        letter-spacing: 0.03em;
+        letter-spacing: 0.06em;
+        padding: 0.65rem 1.6rem;
+        background: var(--accent);
+        color: #0c0c0b;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.15s;
       }
-      .qnav-btn:hover,
-      .qnav-btn.active {
-        background: var(--ink);
-        color: var(--green);
-        border-color: var(--ink);
+      .cta-primary:hover {
+        opacity: 0.85;
+      }
+      .cta-ghost {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        padding: 0.65rem 1.4rem;
+        background: transparent;
+        border: 1px solid var(--border2);
+        color: var(--ink2);
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all 0.15s;
+      }
+      .cta-ghost:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .stat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .stat-cell {
+        background: var(--surface2);
+        padding: 1.4rem 1.1rem;
+        text-align: center;
+      }
+      .stat-num {
+        font-family: var(--serif);
+        font-size: 2.4rem;
+        color: var(--accent);
+        line-height: 1;
+        display: block;
+        letter-spacing: -0.03em;
+      }
+      .stat-lbl {
+        font-size: 8px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink3);
+        margin-top: 0.4rem;
+        display: block;
+        line-height: 1.4;
       }
 
-      /* CONTACT RESULT */
-      .contact-grid {
+      /* SKILLS */
+      .skills-grid {
+        padding: 1.75rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .skill-row {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        padding: 1.8rem;
-        gap: 1.8rem;
-      }
-      .contact-field {
+        grid-template-columns: 200px 90px 1fr 70px;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1rem 0;
         border-bottom: 1px solid var(--border);
-        padding-bottom: 0.8rem;
       }
-      .cf-key {
-        font-size: 10px;
-        letter-spacing: 0.15em;
+      .skill-row:last-child {
+        border-bottom: none;
+      }
+      .skill-name {
+        font-size: 12.5px;
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .skill-cat {
+        font-size: 9px;
+        letter-spacing: 0.1em;
+        padding: 0.25rem 0.65rem;
+        border-radius: 40px;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .skill-bar-wrap {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .skill-track {
+        flex: 1;
+        height: 3px;
+        background: var(--border2);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .skill-fill {
+        height: 100%;
+        background: var(--accent);
+        border-radius: 3px;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .skill-pct {
+        font-size: 11px;
+        color: var(--accent);
+        font-weight: 500;
+        min-width: 28px;
+        text-align: right;
+      }
+      .skill-level {
+        font-size: 9px;
+        letter-spacing: 0.1em;
+        text-align: right;
+        color: var(--ink3);
         text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 0.4rem;
       }
-      .cf-val {
+
+      /* EXPERIENCE */
+      .exp-list {
+        padding: 1.75rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .exp-item {
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        gap: 2rem;
+        padding: 1.75rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .exp-item:last-child {
+        border-bottom: none;
+      }
+      .exp-period {
+        font-size: 10px;
+        color: var(--ink3);
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+      .exp-badge {
+        display: inline-block;
+        font-size: 9px;
+        padding: 0.2rem 0.6rem;
+        border-radius: 40px;
+        letter-spacing: 0.06em;
+      }
+      .exp-company {
+        font-family: var(--serif);
+        font-size: 1.5rem;
+        color: var(--ink);
+        margin-bottom: 0.15rem;
+        line-height: 1.2;
+      }
+      .exp-role-title {
+        font-size: 10px;
+        color: var(--ink3);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+      }
+      .exp-bullets {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .exp-bullets li {
+        font-size: 12px;
+        color: var(--ink2);
+        line-height: 1.75;
+        padding-left: 1rem;
+        position: relative;
+      }
+      .exp-bullets li::before {
+        content: "›";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+      }
+      .exp-impact {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(212, 240, 110, 0.08);
+        border: 1px solid rgba(212, 240, 110, 0.15);
+        color: var(--accent);
+        font-size: 10px;
+        padding: 0.3rem 0.8rem;
+        border-radius: 40px;
+        margin-top: 0.85rem;
+        letter-spacing: 0.05em;
+      }
+
+      /* PROJECTS */
+      .projects-grid {
+        padding: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .project-card {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1.5rem;
+        align-items: start;
+        padding: 1.5rem;
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        border-radius: 10px;
+        transition: border-color 0.2s;
+      }
+      .project-card:hover {
+        border-color: rgba(212, 240, 110, 0.25);
+      }
+      .project-num {
+        font-family: var(--serif);
+        font-size: 2rem;
+        color: var(--border2);
+        line-height: 1;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.5rem;
+      }
+      .project-name {
+        font-family: var(--sans);
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 0.4rem;
+        letter-spacing: -0.01em;
+      }
+      .project-desc {
+        font-size: 11.5px;
+        color: var(--ink2);
+        line-height: 1.8;
+        margin-bottom: 0.75rem;
+        max-width: 520px;
+      }
+      .project-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+      .tool-chip {
+        font-size: 9px;
+        padding: 0.2rem 0.6rem;
+        border: 1px solid var(--border2);
+        border-radius: 4px;
+        color: var(--ink3);
+        letter-spacing: 0.06em;
+      }
+      .project-type-badge {
+        font-size: 9px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+        border-radius: 4px;
+        white-space: nowrap;
+        align-self: start;
+      }
+      .proj-link {
+        font-size: 10px;
+        color: var(--accent3);
+        text-decoration: none;
+        display: block;
+        margin-top: 0.7rem;
+        letter-spacing: 0.04em;
+        transition: opacity 0.15s;
+      }
+      .proj-link:hover {
+        opacity: 0.7;
+      }
+
+      /* CERTS */
+      .certs-list {
+        padding: 1.75rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .cert-row {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.1rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .cert-row:last-child {
+        border-bottom: none;
+      }
+      .cert-idx {
+        font-family: var(--serif);
+        font-size: 1.5rem;
+        color: var(--border2);
+        min-width: 36px;
+        line-height: 1;
+      }
+      .cert-info {
+        flex: 1;
+      }
+      .cert-name {
         font-size: 13px;
         color: var(--ink);
-        word-break: break-word;
+        margin-bottom: 0.2rem;
+        font-weight: 500;
       }
-      .cf-val a {
-        color: var(--blue);
-        text-decoration: none;
+      .cert-issuer {
+        font-size: 10px;
+        color: var(--ink3);
       }
-      .cf-val a:hover {
-        text-decoration: underline;
-      }
-      .hire-btn {
-        display: inline-block;
-        margin-top: 0.5rem;
-        font-family: var(--mono);
-        font-size: 12px;
+      .cert-date {
+        font-size: 10px;
+        color: var(--ink3);
         letter-spacing: 0.08em;
-        background: var(--green);
-        color: #fff;
-        padding: 0.7rem 1.8rem;
+      }
+      .cert-plat {
+        font-size: 9px;
+        padding: 0.25rem 0.65rem;
         border-radius: 40px;
-        text-decoration: none;
+        letter-spacing: 0.08em;
+      }
+
+      /* EDUCATION */
+      .edu-body {
+        padding: 2.5rem 2rem;
+      }
+      .edu-degree {
+        font-family: var(--serif);
+        font-size: 2.2rem;
+        color: var(--ink);
+        margin-bottom: 0.4rem;
+        line-height: 1.2;
+      }
+      .edu-school {
+        font-size: 12px;
+        color: var(--ink2);
+        margin-bottom: 0.9rem;
+      }
+      .edu-meta {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      /* IMPACT */
+      .impact-grid {
+        padding: 1.75rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1px;
+        background: var(--border);
+        border-radius: 0;
+      }
+      .impact-cell {
+        background: var(--surface);
+        padding: 1.5rem;
         transition: background 0.15s;
       }
-      .hire-btn:hover {
-        background: #00a844;
+      .impact-cell:hover {
+        background: var(--surface2);
+      }
+      .impact-val {
+        font-family: var(--serif);
+        font-size: 2rem;
+        color: var(--accent);
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin-bottom: 0.35rem;
+      }
+      .impact-metric {
+        font-size: 12px;
+        color: var(--ink);
+        margin-bottom: 0.25rem;
+        font-weight: 500;
+      }
+      .impact-ctx {
+        font-size: 10px;
+        color: var(--ink3);
+        line-height: 1.6;
+      }
+
+      /* STACK */
+      .stack-body {
+        padding: 1.75rem;
+      }
+      .stack-group {
+        margin-bottom: 1.5rem;
+      }
+      .stack-group:last-child {
+        margin-bottom: 0;
+      }
+      .stack-cat-label {
+        font-size: 8px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ink3);
+        margin-bottom: 0.6rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .stack-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .stack-chip {
+        font-size: 11px;
+        padding: 0.45rem 1rem;
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        border-radius: 6px;
+        color: var(--ink2);
+        letter-spacing: 0.02em;
+        transition: all 0.15s;
+      }
+      .stack-chip:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .stack-chip.expert {
+        border-color: rgba(212, 240, 110, 0.25);
+        color: var(--ink);
+      }
+
+      /* CONTACT */
+      .contact-body {
+        padding: 2rem 1.75rem;
+      }
+      .contact-grid-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+      }
+      .contact-field {
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+      }
+      .contact-field:nth-child(even) {
+        border-right: none;
+      }
+      .contact-field:nth-last-child(-n + 2) {
+        border-bottom: none;
+      }
+      .cf-k {
+        font-size: 8px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink3);
+        margin-bottom: 0.3rem;
+      }
+      .cf-v {
+        font-size: 12.5px;
+        color: var(--ink);
+      }
+      .cf-v a {
+        color: var(--accent3);
+        text-decoration: none;
+      }
+      .cf-v a:hover {
+        text-decoration: underline;
+      }
+      .hire-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--accent);
+        color: #0c0c0b;
+        padding: 0.75rem 2rem;
+        border-radius: 6px;
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+        transition: opacity 0.15s;
+      }
+      .hire-cta:hover {
+        opacity: 0.85;
+      }
+
+      /* tags */
+      .t-green {
+        background: rgba(212, 240, 110, 0.08);
+        color: var(--accent);
+        border: 1px solid rgba(212, 240, 110, 0.2);
+      }
+      .t-blue {
+        background: rgba(110, 212, 240, 0.08);
+        color: var(--accent3);
+        border: 1px solid rgba(110, 212, 240, 0.2);
+      }
+      .t-yellow {
+        background: rgba(240, 212, 110, 0.08);
+        color: var(--accent2);
+        border: 1px solid rgba(240, 212, 110, 0.2);
+      }
+      .t-red {
+        background: rgba(240, 110, 110, 0.08);
+        color: var(--red);
+        border: 1px solid rgba(240, 110, 110, 0.2);
+      }
+      .t-purple {
+        background: rgba(157, 140, 240, 0.08);
+        color: #9d8cf0;
+        border: 1px solid rgba(157, 140, 240, 0.2);
+      }
+      .t-gray {
+        background: var(--surface2);
+        color: var(--ink3);
+        border: 1px solid var(--border);
       }
 
       /* FOOTER */
-      .footer-bar {
-        background: var(--white);
+      .site-footer {
+        background: var(--surface);
         border-top: 1px solid var(--border);
         padding: 1rem 2rem;
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        font-size: 11px;
-        color: var(--muted);
+        font-size: 10px;
+        color: var(--ink3);
+        letter-spacing: 0.05em;
         flex-wrap: wrap;
         gap: 0.5rem;
       }
 
       /* RESPONSIVE */
       @media (max-width: 1024px) {
-        .hero-result {
+        .hero-body {
           grid-template-columns: 1fr;
-          gap: 1.5rem;
+          gap: 2rem;
         }
-        .hero-metrics {
+        .stat-grid {
           grid-template-columns: repeat(4, 1fr);
-          min-width: 0;
         }
-        .contact-grid {
-          grid-template-columns: 1fr;
-          gap: 1.2rem;
+        .skill-row {
+          grid-template-columns: 1fr 80px 1fr 60px;
+          gap: 1rem;
         }
       }
       @media (max-width: 860px) {
         .sidebar {
           position: relative;
           width: 100%;
+          min-width: 0;
           flex-direction: row;
           flex-wrap: wrap;
           padding: 1rem 1.25rem;
-          gap: 1rem;
-          align-items: center;
           height: auto;
           bottom: auto;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
         }
-        .sidebar-footer,
-        .db-label:not(:first-of-type),
-        .db-item:not(.active) {
+        .logo-sub,
+        .nav-section,
+        .sidebar-footer {
           display: none;
         }
-        .sidebar .db-item.active {
-          display: flex;
+        .nav-item {
+          padding: 0.4rem 0.6rem;
+          font-size: 10px;
         }
         .main {
           margin-left: 0;
         }
-        .topbar {
-          padding: 0.6rem 1rem;
-        }
         .results-area {
           padding: 1.25rem;
         }
-        .hero-metrics {
-          grid-template-columns: repeat(2, 1fr);
+        .exp-item {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
         }
-        .hm-num {
-          font-size: 1.6rem;
+        .skill-row {
+          grid-template-columns: 1fr 60px;
+        }
+        .skill-cat,
+        .skill-level {
+          display: none;
         }
       }
-      @media (max-width: 640px) {
-        .result-table th,
-        .result-table td {
-          padding: 0.7rem 0.9rem;
-          font-size: 12px;
+      @media (max-width: 600px) {
+        .hero-name {
+          font-size: 2.6rem;
         }
-        .hero-name-big {
-          font-size: 2rem;
+        .project-card {
+          grid-template-columns: 1fr;
         }
-        .query-panel {
-          padding: 1rem;
+        .contact-grid-inner {
+          grid-template-columns: 1fr;
         }
-        .query-box {
-          padding: 0.9rem 1rem;
+        .contact-field {
+          border-right: none !important;
+        }
+        .contact-field:nth-last-child(-n + 2) {
+          border-bottom: 1px solid var(--border);
+        }
+        .contact-field:last-child {
+          border-bottom: none;
         }
       }
     </style>
   </head>
   <body>
     <div class="shell">
-      <!-- SIDEBAR -->
       <aside class="sidebar">
         <div>
-          <div class="sidebar-logo">SHASHANK<span>.</span>RAJ</div>
-          <div class="sidebar-title">Personal Database v1.0</div>
-
-          <div class="db-label">Tables</div>
-          <a href="#" class="db-item active" onclick="runQuery('profile')"
-            ><span class="icon">◈</span>analyst_profile</a
+          <div class="logo-mark">
+            <div class="logo-sr">SR</div>
+            <div class="logo-dot"></div>
+          </div>
+          <div class="logo-sub">Personal Database v2.0</div>
+          <div class="nav-section">Tables</div>
+          <a class="nav-item active" onclick="runQuery('profile')"
+            ><span class="nav-icon">◈</span>analyst_profile</a
           >
-          <a href="#" class="db-item" onclick="runQuery('skills')"
-            ><span class="icon">◈</span>technical_skills</a
+          <a class="nav-item" onclick="runQuery('skills')"
+            ><span class="nav-icon">◈</span>technical_skills</a
           >
-          <a href="#" class="db-item" onclick="runQuery('experience')"
-            ><span class="icon">◈</span>work_experience</a
+          <a class="nav-item" onclick="runQuery('experience')"
+            ><span class="nav-icon">◈</span>work_experience</a
           >
-          <a href="#" class="db-item" onclick="runQuery('projects')"
-            ><span class="icon">◈</span>projects</a
+          <a class="nav-item" onclick="runQuery('projects')"
+            ><span class="nav-icon">◈</span>projects</a
           >
-          <a href="#" class="db-item" onclick="runQuery('certs')"
-            ><span class="icon">◈</span>certifications</a
+          <a class="nav-item" onclick="runQuery('certs')"
+            ><span class="nav-icon">◈</span>certifications</a
           >
-          <a href="#" class="db-item" onclick="runQuery('education')"
-            ><span class="icon">◈</span>education</a
+          <a class="nav-item" onclick="runQuery('education')"
+            ><span class="nav-icon">◈</span>education</a
           >
-          <a href="#" class="db-item" onclick="runQuery('contact')"
-            ><span class="icon">◈</span>contact_info</a
+          <a class="nav-item" onclick="runQuery('contact')"
+            ><span class="nav-icon">◈</span>contact_info</a
           >
-
-          <div class="db-label">Views</div>
-          <a href="#" class="db-item" onclick="runQuery('impact')"
-            ><span class="icon">▤</span>impact_summary</a
+          <div class="nav-section">Views</div>
+          <a class="nav-item" href="portfolio.html"
+            ><span class="nav-icon">▤</span>portfolio_showcase</a
           >
-          <a href="#" class="db-item" onclick="runQuery('stack')"
-            ><span class="icon">▤</span>full_stack_view</a
+          <a class="nav-item" onclick="runQuery('impact')"
+            ><span class="nav-icon">▤</span>impact_summary</a
+          >
+          <a class="nav-item" onclick="runQuery('stack')"
+            ><span class="nav-icon">▤</span>full_stack_view</a
           >
         </div>
-
         <div class="sidebar-footer">
-          <div>
-            <span class="status-dot"></span
-            ><span class="status-text">Available for hire</span>
+          <div class="status-pill">
+            <span class="status-blink"></span>Open to work
           </div>
-          <div class="contact-mini">
+          <div class="contact-links">
             <a href="mailto:shashankraj1010@gmail.com"
               >shashankraj1010@gmail.com</a
             >
@@ -728,452 +1157,542 @@
         </div>
       </aside>
 
-      <!-- MAIN CONTENT -->
       <div class="main">
-        <!-- TOPBAR -->
         <div class="topbar">
-          <span class="tab active">Query Editor</span>
-          <span
-            class="tab"
-            onclick="
-              document
-                .getElementById('results')
-                .scrollIntoView({ behavior: 'smooth' })
-            "
-            >Resume</span
+          <button class="tab-btn active" onclick="runQuery('profile')">
+            Query Editor
+          </button>
+          <button class="tab-btn" onclick="runQuery('impact')">
+            Impact View
+          </button>
+          <button class="tab-btn" onclick="runQuery('stack')">
+            Full Stack
+          </button>
+          <a
+            class="tab-btn"
+            href="portfolio.html"
+            style="text-decoration: none; display: inline-block"
           >
-          <span class="tab" onclick="runQuery('impact')">Impact View</span>
+            Portfolio ↗
+          </a>
           <div class="topbar-right">
-            <button class="download-btn" onclick="downloadResume()">
-              📄 Download Resume (PDF)
+            <span class="time-display"
+              >IST <span id="live-time">--:--:--</span> · Pune</span
+            >
+            <button class="dl-btn" onclick="downloadResume()">
+              ↓ Resume PDF
             </button>
-            <span>IST <span id="live-time">--:--:--</span> · Pune, India</span>
           </div>
         </div>
 
-        <!-- QUERY EDITOR -->
         <div class="query-panel">
-          <div class="query-header">
-            <span class="query-header-label">SQL Query</span>
-            <button class="run-btn" onclick="runCurrentQuery()">
-              ▶ Run Query
-            </button>
+          <div class="qp-header">
+            <span class="qp-label">SQL Query</span>
+            <button class="run-btn" onclick="runCurrentQuery()">▶ Run</button>
           </div>
-          <div class="query-box" id="querybox">
+          <div class="query-box">
             <span class="q-cmt"
-              >-- Welcome. This portfolio is a live database.<br />-- Click any
-              table or run a query below.<br /><br
-            /></span>
-            <span id="query-text"></span><span class="cursor-blink"></span>
+              >-- Welcome. This portfolio is a live database. -- Select a table
+              from the sidebar or use the nav below. </span
+            ><span id="query-text"></span><span class="cursor"></span>
           </div>
-          <div style="margin-top: 1rem">
-            <div class="query-nav" id="qnav">
-              <button class="qnav-btn active" onclick="runQuery('profile')">
-                Profile
-              </button>
-              <button class="qnav-btn" onclick="runQuery('skills')">
-                Skills
-              </button>
-              <button class="qnav-btn" onclick="runQuery('experience')">
-                Experience
-              </button>
-              <button class="qnav-btn" onclick="runQuery('projects')">
-                Projects
-              </button>
-              <button class="qnav-btn" onclick="runQuery('certs')">
-                Certifications
-              </button>
-              <button class="qnav-btn" onclick="runQuery('education')">
-                Education
-              </button>
-              <button class="qnav-btn" onclick="runQuery('impact')">
-                Impact
-              </button>
-              <button class="qnav-btn" onclick="runQuery('contact')">
-                Contact
-              </button>
-            </div>
+          <div class="qnav">
+            <button class="qnav-pill active" onclick="runQuery('profile')">
+              Profile
+            </button>
+            <button class="qnav-pill" onclick="runQuery('skills')">
+              Skills
+            </button>
+            <button class="qnav-pill" onclick="runQuery('experience')">
+              Experience
+            </button>
+            <button class="qnav-pill" onclick="runQuery('projects')">
+              Projects
+            </button>
+            <button class="qnav-pill" onclick="runQuery('certs')">Certs</button>
+            <button class="qnav-pill" onclick="runQuery('education')">
+              Education
+            </button>
+            <button class="qnav-pill" onclick="runQuery('impact')">
+              Impact
+            </button>
+            <button class="qnav-pill" onclick="runQuery('contact')">
+              Contact
+            </button>
+            <a
+              class="qnav-pill"
+              href="portfolio.html"
+              style="text-decoration: none; display: inline-block"
+            >
+              Portfolio ↗
+            </a>
           </div>
         </div>
 
-        <!-- RESULTS -->
         <div class="results-area" id="results">
           <div id="result-container"></div>
         </div>
 
-        <div class="footer-bar">
-          <span>sr_analytics.db · SQLite 3.42 · UTF-8</span>
-          <span>© 2026 Shashank Raj · All rights reserved</span>
+        <div class="site-footer">
+          <span
+            >sr_analytics.db · SQLite 3.42 · UTF-8 ·
+            <span style="color: var(--accent)">●</span> Connected</span
+          >
+          <span>© 2026 Shashank Raj</span>
         </div>
       </div>
-      <!-- /main -->
     </div>
-    <!-- /shell -->
 
     <script>
-      // ---- CLOCK ----
-      function updateClock() {
-        const now = new Date().toLocaleTimeString("en-IN", {
-          timeZone: "Asia/Kolkata",
-          hour12: false,
-        });
-        const timeEl = document.getElementById("live-time");
-        if (timeEl) timeEl.textContent = now;
-      }
-      updateClock();
-      setInterval(updateClock, 1000);
+      (function clock() {
+        const el = document.getElementById("live-time");
+        const tick = () => {
+          if (el)
+            el.textContent = new Date().toLocaleTimeString("en-IN", {
+              timeZone: "Asia/Kolkata",
+              hour12: false,
+            });
+        };
+        tick();
+        setInterval(tick, 1000);
+      })();
 
-      // ---- SQL QUERY TEXTS ----
       const QUERY_TEXTS = {
-        profile: `SELECT\n  name, role, location, experience,\n  status, education\nFROM analyst_profile\nWHERE id = 1;`,
-        skills: `SELECT\n  skill_name, category,\n  proficiency_pct, level\nFROM technical_skills\nORDER BY proficiency_pct DESC;`,
-        experience: `SELECT\n  company, role, period,\n  key_achievement, impact_pct\nFROM work_experience\nORDER BY start_date DESC;`,
-        projects: `SELECT\n  project_name, type,\n  tools_used, accuracy, outcome\nFROM projects\nWHERE featured = TRUE\nORDER BY impact DESC;`,
-        certs: `SELECT\n  cert_name, issuer,\n  platform, issued_date\nFROM certifications\nORDER BY issued_date DESC;`,
-        education: `SELECT\n  degree, institution,\n  specialization, graduation_year\nFROM education\nWHERE analyst_id = 1;`,
-        impact: `SELECT\n  metric, value, context\nFROM impact_summary\nWHERE analyst_id = 1;`,
-        stack: `SELECT\n  tool, category, expertise\nFROM full_stack_view\nORDER BY category, expertise DESC;`,
-        contact: `SELECT\n  field, value\nFROM contact_info\nWHERE analyst_id = 1;`,
+        profile:
+          '<span class="q-kw">SELECT</span>\n  <span class="q-col">name, role, location, experience,\n  status, education</span>\n<span class="q-kw">FROM</span> <span class="q-tbl">analyst_profile</span>\n<span class="q-kw">WHERE</span> id = <span class="q-col">1</span>;',
+        skills:
+          '<span class="q-kw">SELECT</span>\n  <span class="q-col">skill_name, category,\n  proficiency_pct, level</span>\n<span class="q-kw">FROM</span> <span class="q-tbl">technical_skills</span>\n<span class="q-kw">ORDER BY</span> proficiency_pct <span class="q-kw">DESC</span>;',
+        experience:
+          '<span class="q-kw">SELECT</span>\n  <span class="q-col">company, role, period,\n  key_achievement, impact_pct</span>\n<span class="q-kw">FROM</span> <span class="q-tbl">work_experience</span>\n<span class="q-kw">ORDER BY</span> start_date <span class="q-kw">DESC</span>;',
+        projects:
+          '<span class="q-kw">SELECT</span>\n  <span class="q-col">project_name, type,\n  tools_used, outcome</span>\n<span class="q-kw">FROM</span> <span class="q-tbl">projects</span>\n<span class="q-kw">WHERE</span> featured = <span class="q-col">TRUE</span>\n<span class="q-kw">ORDER BY</span> impact <span class="q-kw">DESC</span>;',
+        certs:
+          '<span class="q-kw">SELECT</span>\n  <span class="q-col">cert_name, issuer,\n  platform, issued_date</span>\n<span class="q-kw">FROM</span> <span class="q-tbl">certifications</span>\n<span class="q-kw">ORDER BY</span> issued_date <span class="q-kw">DESC</span>;',
+        education:
+          '<span class="q-kw">SELECT</span>\n  <span class="q-col">degree, institution,\n  specialization, graduation_year</span>\n<span class="q-kw">FROM</span> <span class="q-tbl">education</span>\n<span class="q-kw">WHERE</span> analyst_id = <span class="q-col">1</span>;',
+        impact:
+          '<span class="q-kw">SELECT</span>\n  <span class="q-col">metric, value, context</span>\n<span class="q-kw">FROM</span> <span class="q-tbl">impact_summary</span>\n<span class="q-kw">WHERE</span> analyst_id = <span class="q-col">1</span>;',
+        stack:
+          '<span class="q-kw">SELECT</span>\n  <span class="q-col">tool, category, expertise</span>\n<span class="q-kw">FROM</span> <span class="q-tbl">full_stack_view</span>\n<span class="q-kw">ORDER BY</span> category, expertise <span class="q-kw">DESC</span>;',
+        contact:
+          '<span class="q-kw">SELECT</span>\n  <span class="q-col">field, value</span>\n<span class="q-kw">FROM</span> <span class="q-tbl">contact_info</span>\n<span class="q-kw">WHERE</span> analyst_id = <span class="q-col">1</span>;',
       };
 
-      // ---- RESULT HTML GENERATORS (updated as requested) ----
-      const RESULT_GENERATORS = {
-        profile: () => `
-      <div class="result-block show">
-        <div class="result-header">
-          <div class="rh-left"><span class="rh-label">analyst_profile</span><span class="rh-rows">1 row returned</span></div>
-          <span class="rh-time">0.003s</span>
-        </div>
-        <div class="hero-result">
-          <div>
-            <div class="hero-name-big">Shashank Raj</div>
-            <div class="hero-role">Data Analyst · Python · SQL · Power BI · E-Commerce Analytics</div>
-            <div class="hero-tags">
-              <span class="cell-tag tag-green">● Available for hire</span>
-              <span class="cell-tag tag-blue">Pune, India</span>
-              <span class="cell-tag tag-purple">1+ Year Experience</span>
-              <span class="cell-tag tag-yellow">B.Tech CSE</span>
-            </div>
-            <div style="margin-top:1.25rem;font-size:12px;color:var(--muted);line-height:1.8;max-width:500px;">
-              Data Analyst specializing in end-to-end analytics — from raw data wrangling to executive dashboards. 
-              Built reporting pipelines, and e-commerce analytics systems that moved real revenue.
-            </div>
-            <a href="mailto:shashankraj1010@gmail.com" class="hire-btn" style="margin-top:1.5rem;display:inline-block;">SELECT * FROM opportunities;</a>
+      const RESULTS = {
+        profile: () => `<div class="result-card show">
+      <div class="card-header"><div class="ch-left"><span class="ch-label">analyst_profile</span><span class="ch-rows">1 row returned</span></div><span class="ch-time">0.003s</span></div>
+      <div class="hero-body">
+        <div>
+          <div class="hero-eyebrow">↳ Data Analyst · Pune, India</div>
+          <div class="hero-name">Shashank<br><em>Raj.</em></div>
+          <div class="hero-desc">Analyst specialising in end-to-end analytics — from raw data wrangling to executive dashboards. Built reporting pipelines and e-commerce analytics systems that moved real revenue across 400+ product listings.</div>
+          <div class="hero-tags">
+            <span class="htag htag-accent">● Available for hire</span>
+            <span class="htag">1+ Year Experience</span>
+            <span class="htag htag-blue">Python · SQL · Power BI</span>
+            <span class="htag">B.Tech CSE</span>
           </div>
-          <div class="hero-metrics">
-            <div class="hm-cell"><span class="hm-num counter" data-val="55">0</span><span class="hm-lbl">% Faster Reports</span></div>
-            <div class="hm-cell"><span class="hm-num counter" data-val="400">0</span><span class="hm-lbl">Listings Optimized</span></div>
-            <div class="hm-cell"><span class="hm-num counter" data-val="85">0</span><span class="hm-lbl">% ML Accuracy</span></div>
-            <div class="hm-cell"><span class="hm-num counter" data-val="15">0</span><span class="hm-lbl">% Revenue ↑</span></div>
+          <div class="cta-row">
+            <a href="mailto:shashankraj1010@gmail.com" class="cta-primary">Get in touch ↗</a>
+            <a href="#" class="cta-ghost">View GitHub</a>
           </div>
         </div>
-      </div>`,
+        <div>
+          <div class="stat-grid">
+            <div class="stat-cell"><span class="stat-num counter" data-val="55">0</span><span class="stat-lbl">% Faster Reports</span></div>
+            <div class="stat-cell"><span class="stat-num counter" data-val="400">0</span><span class="stat-lbl">Listings Optimised</span></div>
+            <div class="stat-cell"><span class="stat-num counter" data-val="85">0</span><span class="stat-lbl">% ML Accuracy</span></div>
+            <div class="stat-cell"><span class="stat-num counter" data-val="15">0</span><span class="stat-lbl">% Revenue Up</span></div>
+          </div>
+        </div>
+      </div>
+    </div>`,
 
         skills: () => {
-          const skillsData = [
+          const data = [
+            ["EDA · Business Reporting · KPIs", "Analytics", 92, "Expert"],
             ["Python · Pandas · NumPy", "Data Engineering", 90, "Expert"],
             ["Power BI · DAX · Power Query", "Visualization", 88, "Expert"],
-            ["EDA · Business Reporting · KPIs", "Analytics", 92, "Expert"],
             ["SQL · MySQL · Joins", "Databases", 85, "Advanced"],
             ["Advanced Excel · Pivot Tables", "Reporting", 85, "Advanced"],
             ["AWS S3 · EC2 · Cloud", "Cloud", 65, "Intermediate"],
-          ]; // removed ML row
-          return `
-        <div class="result-block show">
-          <div class="result-header"><div class="rh-left"><span class="rh-label">technical_skills</span><span class="rh-rows">${skillsData.length} rows returned</span></div><span class="rh-time">0.001s</span></div>
-          <div class="result-table-wrapper"><table class="result-table"><thead> <tr><th>#</th><th>skill_name</th><th>category</th><th>proficiency_pct</th><th>level</th></tr></thead><tbody>
-            ${skillsData
-              .map(
-                ([name, cat, pct, lvl], i) => `
-              <tr>
-                <td style="color:var(--muted)">${i + 1}</td>
-                <td><strong>${name}</strong></td>
-                <td><span class="cell-tag ${cat === "Data Engineering" ? "tag-blue" : cat === "Visualization" ? "tag-purple" : cat === "Analytics" ? "tag-green" : cat === "Databases" ? "tag-yellow" : cat === "Machine Learning" ? "tag-red" : "tag-gray"}">${cat}</span></td>
-                <td><div class="pct-bar"><div class="pct-track"><div class="pct-fill" data-w="${pct / 100}"></div></div><span class="pct-val">${pct}%</span></div></td>
-                <td><span class="cell-tag ${lvl === "Expert" ? "tag-green" : lvl === "Advanced" ? "tag-blue" : "tag-gray"}">${lvl}</span></td>
-              </tr>
-            `,
-              )
-              .join("")}
-          </tbody></table></div>
-        </div>`;
+          ];
+          const cc = (c) =>
+            c === "Data Engineering"
+              ? "t-blue"
+              : c === "Visualization"
+                ? "t-purple"
+                : c === "Analytics"
+                  ? "t-green"
+                  : c === "Databases"
+                    ? "t-yellow"
+                    : "t-gray";
+          return `<div class="result-card show">
+        <div class="card-header"><div class="ch-left"><span class="ch-label">technical_skills</span><span class="ch-rows">${data.length} rows returned</span></div><span class="ch-time">0.001s</span></div>
+        <div class="skills-grid">${data
+          .map(
+            ([n, c, p, l]) => `
+          <div class="skill-row">
+            <div class="skill-name">${n}</div>
+            <span class="skill-cat ${cc(c)}">${c}</span>
+            <div class="skill-bar-wrap"><div class="skill-track"><div class="skill-fill" data-w="${p / 100}"></div></div><span class="skill-pct">${p}%</span></div>
+            <div class="skill-level">${l}</div>
+          </div>`,
+          )
+          .join("")}
+        </div>
+      </div>`;
         },
 
-        experience: () => `
-      <div class="result-block show">
-        <div class="result-header"><div class="rh-left"><span class="rh-label">work_experience</span><span class="rh-rows">2 rows returned</span></div><span class="rh-time">0.002s</span></div>
-        <div class="result-table-wrapper"><table class="result-table"><thead><tr><th>#</th><th>company</th><th>role</th><th>period</th><th>key_achievement</th><th>impact</th></tr></thead><tbody>
-          <tr><td style="color:var(--muted)">1</td><td><strong>Aurafloral Studio</strong><br><span style="color:var(--muted);font-size:11px">Pune, India</span></td><td><span class="cell-tag tag-green">Data Analyst</span></td><td style="white-space:nowrap">Nov 2025 – Present</td><td>Python automation cut reporting from 20→8 hrs/week. Built Power BI dashboards for 100+ Amazon & Flipkart listings.</td><td><span class="metric-val metric-up">+55% speed</span></td></tr>
-          <tr><td style="color:var(--muted)">2</td><td><strong>RB2F</strong><br><span style="color:var(--muted);font-size:11px">Pune, India</span></td><td><span class="cell-tag tag-blue">Trainee Analyst</span></td><td style="white-space:nowrap">Jun – Oct 2025</td><td>Optimized 300+ Amazon listings with Helium 10 & Keepa. Python pipelines cut manual effort 40%. SQL dashboards drove 15% ROI increase.</td><td><span class="metric-val metric-up">+15% revenue</span></td></tr>
-        </tbody></table></div>
-      </div>`,
+        experience: () => `<div class="result-card show">
+      <div class="card-header"><div class="ch-left"><span class="ch-label">work_experience</span><span class="ch-rows">2 rows returned</span></div><span class="ch-time">0.002s</span></div>
+      <div class="exp-list">
+        <div class="exp-item">
+          <div><div class="exp-period">Nov 2025<br>May 2026</div><span class="exp-badge t-green">Data Analyst</span></div>
+          <div>
+            <div class="exp-company">Aurafloral Studio</div>
+            <div class="exp-role-title">Pune, India</div>
+            <ul class="exp-bullets">
+              <li>Analysed &amp; optimised 100+ product listings across Amazon &amp; Flipkart, improving visibility and sales performance.</li>
+              <li>Python-based Excel automation cut manual reporting from 20 hrs to 8 hrs/week — 55% delivery speed improvement.</li>
+              <li>Built interactive Power BI dashboards tracking sales metrics, MVP products, pricing trends &amp; inventory insights; automated data cleaning saving 5 hrs/week.</li>
+              <li>Multi-dimensional analysis using Python, SQL &amp; Excel for promotions and inventory planning — contributed to 8% revenue improvement.</li>
+            </ul>
+            <div class="exp-impact">+55% reporting speed &nbsp;·&nbsp; +8% revenue &nbsp;·&nbsp; −5 hrs/week data cleaning</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div><div class="exp-period">Jun 2025<br>Oct 2025</div><span class="exp-badge t-blue">Trainee</span></div>
+          <div>
+            <div class="exp-company">RB2F</div>
+            <div class="exp-role-title">Pune, India</div>
+            <ul class="exp-bullets">
+              <li>Optimised 300+ Amazon listings using Excel, Helium 10 &amp; Keepa to identify high-performing keywords and benchmark competitors.</li>
+              <li>Automated reporting pipelines using Python (Pandas) &amp; Excel, reducing manual effort by 40%.</li>
+              <li>Built dashboards driving a 15% revenue and 15% ROI increase.</li>
+            </ul>
+            <div class="exp-impact">+15% revenue &nbsp;·&nbsp; +15% ROI &nbsp;·&nbsp; −40% manual effort</div>
+          </div>
+        </div>
+      </div>
+    </div>`,
 
         projects: () => {
-          const projectsData = [
-            [
-              "Banking Risk Analytics Dashboard",
-              "SQL + BI",
-              "Power BI · Pandas · SQL<br>Logistic Regression",
-              "85% accuracy predicting credit default. 5,000+ records processed.",
-              '<a href="#" style="color:var(--blue)">GitHub ↗</a>',
-            ],
-          ]; // only one project left
-          return `
-        <div class="result-block show">
-          <div class="result-header"><div class="rh-left"><span class="rh-label">projects</span><span class="rh-rows">${projectsData.length} row returned</span></div><span class="rh-time">0.004s</span></div>
-          <div class="result-table-wrapper"><table class="result-table"><thead><tr><th>#</th><th>project_name</th><th>type</th><th>tools_used</th><th>outcome</th><th>link</th></tr></thead><tbody>
-            ${projectsData
-              .map(
-                ([name, type, tools, outcome, link], i) => `
-              <tr><td style="color:var(--muted)">${i + 1}</td><td><strong>${name}</strong><br><span class="cell-tag tag-yellow">★ Featured</span></td><td><span class="cell-tag tag-red">${type}</span></td><td style="font-size:11px">${tools}</td><td style="font-size:11px">${outcome}</td><td>${link}</td></tr>
-            `,
-              )
-              .join("")}
-          </tbody></table></div>
-        </div>`;
+          const ps = [
+            {
+              name: "Banking Risk Analytics Dashboard",
+              type: "ML + BI",
+              tc: "t-red",
+              tools: [
+                "Power BI",
+                "Pandas",
+                "SQL",
+                "Logistic Regression",
+                "Decision Tree",
+              ],
+              desc: "Built Logistic Regression &amp; Decision Tree models predicting credit default risk with 85% accuracy. Cleaned &amp; transformed 5,000+ records using Python including feature engineering &amp; customer segmentation. KPI-driven dashboards for loan performance and high-risk identification.",
+            },
+            {
+              name: "Business & Customer Insights",
+              type: "Analytics",
+              tc: "t-blue",
+              tools: [
+                "Python",
+                "SQL",
+                "Power BI",
+                "EDA",
+                "Customer Segmentation",
+                "Matplotlib",
+                "Seaborn",
+              ],
+              desc: "End-to-end customer shopping behaviour analysis covering EDA, segmentation, purchase patterns &amp; loyalty behaviour. Interactive Power BI dashboard for demographics, product category trends &amp; revenue KPIs.",
+            },
+            {
+              name: "Sales Performance Analysis",
+              type: "BI + EDA",
+              tc: "t-yellow",
+              tools: ["Python", "SQL", "Power BI", "EDA", "KPI Reporting"],
+              desc: "Analysed raw sales dataset to identify top-performing products, revenue trends, regional performance &amp; seasonal patterns. Interactive Power BI dashboard with monthly trends and profitability analysis.",
+            },
+          ];
+          return `<div class="result-card show">
+        <div class="card-header"><div class="ch-left"><span class="ch-label">projects</span><span class="ch-rows">${ps.length} rows returned</span></div><span class="ch-time">0.004s</span></div>
+        <div class="projects-grid">${ps
+          .map(
+            (p, i) => `
+          <div class="project-card">
+            <div>
+              <div class="project-num">0${i + 1}</div>
+              <div class="project-name">${p.name}</div>
+              <div class="project-desc">${p.desc}</div>
+              <div class="project-tools">${p.tools.map((t) => `<span class="tool-chip">${t}</span>`).join("")}</div>
+              <a href="#" class="proj-link">View on GitHub ↗</a>
+            </div>
+            <span class="project-type-badge ${p.tc}">${p.type}</span>
+          </div>`,
+          )
+          .join("")}
+        </div>
+      </div>`;
         },
 
-        certs: () => `
-      <div class="result-block show">
-        <div class="result-header"><div class="rh-left"><span class="rh-label">certifications</span><span class="rh-rows">3 rows returned</span></div><span class="rh-time">0.001s</span></div>
-        <div class="result-table-wrapper"><table class="result-table"><thead><tr><th>#</th><th>cert_name</th><th>issuer</th><th>platform</th><th>issued_date</th></tr></thead><tbody>
-          <tr><td style="color:var(--muted)">1</td><td><strong>Tata Data Visualization</strong></td><td>TATA Group</td><td><span class="cell-tag tag-blue">Forage</span></td><td class="cell-mono">2025-01</td></tr>
-          <tr><td style="color:var(--muted)">2</td><td><strong>Deloitte Data Analytics</strong></td><td>Deloitte</td><td><span class="cell-tag tag-blue">Forage</span></td><td class="cell-mono">2025-08</td></tr>
-          <tr><td style="color:var(--muted)">3</td><td><strong>AWS Cloud Virtual Internship</strong></td><td>Amazon Web Services</td><td><span class="cell-tag tag-yellow">Eduskills</span></td><td class="cell-mono">2023-07</td></tr>
-        </tbody></table></div>
-      </div>`,
+        certs: () => `<div class="result-card show">
+      <div class="card-header"><div class="ch-left"><span class="ch-label">certifications</span><span class="ch-rows">3 rows returned</span></div><span class="ch-time">0.001s</span></div>
+      <div class="certs-list">
+        <div class="cert-row"><div class="cert-idx">01</div><div class="cert-info"><div class="cert-name">Tata Data Visualization</div><div class="cert-issuer">TATA Group</div></div><span class="cert-plat t-yellow">Forage</span><div class="cert-date">Jan 2025</div></div>
+        <div class="cert-row"><div class="cert-idx">02</div><div class="cert-info"><div class="cert-name">Deloitte Data Analytics</div><div class="cert-issuer">Deloitte</div></div><span class="cert-plat t-blue">Forage</span><div class="cert-date">Aug 2025</div></div>
+        <div class="cert-row"><div class="cert-idx">03</div><div class="cert-info"><div class="cert-name">AWS Cloud Virtual Internship</div><div class="cert-issuer">Amazon Web Services</div></div><span class="cert-plat t-yellow">Eduskills</span><div class="cert-date">Jul 2023</div></div>
+      </div>
+    </div>`,
 
-        education: () => `
-      <div class="result-block show">
-        <div class="result-header"><div class="rh-left"><span class="rh-label">education</span><span class="rh-rows">1 row returned</span></div><span class="rh-time">0.001s</span></div>
-        <div class="result-table-wrapper"><table class="result-table"><thead><tr><th>#</th><th>degree</th><th>institution</th><th>specialization</th><th>graduation_year</th></tr></thead><tbody>
-          <tr><td style="color:var(--muted)">1</td><td><strong>B.Tech · Computer Science & Engineering</strong></td><td>MIT ADT University</td><td><span class="cell-tag tag-purple">Cloud Computing Spec.</span></td><td class="cell-mono">2025-11</td></tr>
-        </tbody></table></div>
-      </div>`,
+        education: () => `<div class="result-card show">
+      <div class="card-header"><div class="ch-left"><span class="ch-label">education</span><span class="ch-rows">1 row returned</span></div><span class="ch-time">0.001s</span></div>
+      <div class="edu-body">
+        <div class="edu-degree">B.Tech in Computer<br>Science &amp; Engineering</div>
+        <div class="edu-school">MIT ADT University · Pune, Maharashtra</div>
+        <div class="edu-meta">
+          <span class="htag htag-accent">Graduated Nov 2025</span>
+          <span class="htag">Specialisation: Cloud Computing</span>
+        </div>
+      </div>
+    </div>`,
 
         impact: () => {
-          const impactData = [
+          const d = [
             [
-              "Reporting Speed",
               "55% faster",
+              "Reporting Speed",
               "Python automation at Aurafloral (20 hrs → 8 hrs/week)",
             ],
             [
-              "Revenue Impact",
               "8% increase",
-              "Product tier analysis — top 3 & bottom 5 identification",
+              "Revenue Impact",
+              "Multi-dimensional analysis — promotions & inventory planning",
             ],
             [
-              "Data Accuracy",
-              "15% improvement",
-              "Automated Python cleaning feeding Power BI",
+              "5 hrs/week",
+              "Data Cleaning Saved",
+              "Automated Power BI data cleaning pipeline at Aurafloral",
             ],
             [
-              "Manual Effort Saved",
               "40% reduction",
+              "Manual Effort",
               "Pandas pipelines replacing manual Excel at RB2F",
             ],
             [
-              "Revenue (RB2F)",
               "15% increase",
+              "Revenue — RB2F",
               "High-margin product identification via SQL analysis",
             ],
             [
-              "ROI Improvement",
               "15% increase",
+              "ROI Improvement",
               "SQL-driven ad-hoc analysis & dashboard insights",
             ],
             [
-              "Listings Optimized",
               "400+ products",
+              "Listings Optimised",
               "Amazon & Flipkart across both roles",
             ],
-          ]; // removed ML row
-          return `
-        <div class="result-block show">
-          <div class="result-header"><div class="rh-left"><span class="rh-label">impact_summary VIEW</span><span class="rh-rows">${impactData.length} rows returned</span></div><span class="rh-time">0.002s</span></div>
-          <div class="result-table-wrapper"><table class="result-table"><thead><tr><th>#</th><th>metric</th><th>value</th><th>context</th></tr></thead><tbody>
-            ${impactData
-              .map(
-                ([m, v, c], i) => `
-              <tr><td style="color:var(--muted)">${i + 1}</td><td>${m}</td><td><strong class="metric-up">${v}</strong></td><td style="font-size:11px;color:var(--muted)">${c}</td></tr>
-            `,
-              )
-              .join("")}
-          </tbody></table></div>
-        </div>`;
+            [
+              "85% accuracy",
+              "ML Model",
+              "Credit default prediction — Banking Risk Analytics project",
+            ],
+          ];
+          return `<div class="result-card show">
+        <div class="card-header"><div class="ch-left"><span class="ch-label">impact_summary VIEW</span><span class="ch-rows">${d.length} rows returned</span></div><span class="ch-time">0.002s</span></div>
+        <div class="impact-grid">${d.map(([v, m, c]) => `<div class="impact-cell"><div class="impact-val">${v}</div><div class="impact-metric">${m}</div><div class="impact-ctx">${c}</div></div>`).join("")}</div>
+      </div>`;
         },
 
-        stack: () => `
-      <div class="result-block show">
-        <div class="result-header"><div class="rh-left"><span class="rh-label">full_stack_view</span><span class="rh-rows">12 rows returned</span></div><span class="rh-time">0.001s</span></div>
-        <div class="result-table-wrapper"><table class="result-table"><thead><tr><th>#</th><th>tool</th><th>category</th><th>expertise</th></tr></thead><tbody>
-          ${[
-            ["Pandas", "Python", "Expert"],
-            ["NumPy", "Python", "Expert"],
-            ["Automation Scripts", "Python", "Advanced"],
-            ["Power BI", "Visualization", "Expert"],
-            ["DAX", "Visualization", "Expert"],
-            ["Power Query", "Visualization", "Advanced"],
-            ["MySQL", "Database", "Advanced"],
-            ["SQL Joins & Aggregations", "Database", "Advanced"],
-            ["Advanced Excel", "Reporting", "Advanced"],
-            ["Pivot Tables & Charts", "Reporting", "Advanced"],
-            ["AWS S3", "Cloud", "Intermediate"],
-            ["EC2", "Cloud", "Intermediate"],
-          ]
-            .map(
-              ([t, c, e], i) =>
-                `<tr><td style="color:var(--muted)">${i + 1}</td><td><strong>${t}</strong></td><td><span class="cell-tag ${c === "Python" ? "tag-blue" : c === "Visualization" ? "tag-purple" : c === "Database" ? "tag-yellow" : c === "Cloud" ? "tag-green" : "tag-gray"}">${c}</span></td><td><span class="cell-tag ${e === "Expert" ? "tag-green" : e === "Advanced" ? "tag-blue" : "tag-gray"}">${e}</span></td></tr>`,
-            )
-            .join("")}
-        </tbody></table></div>
-      </div>`,
+        stack: () => {
+          const groups = [
+            {
+              cat: "Python",
+              chips: [
+                ["Pandas", 1],
+                ["NumPy", 1],
+                ["Automation Scripts", 0],
+              ],
+            },
+            {
+              cat: "Visualization",
+              chips: [
+                ["Power BI", 1],
+                ["DAX", 1],
+                ["Power Query", 0],
+              ],
+            },
+            {
+              cat: "SQL & Databases",
+              chips: [
+                ["MySQL", 0],
+                ["Joins & Subqueries", 0],
+                ["Aggregations", 0],
+              ],
+            },
+            {
+              cat: "Reporting",
+              chips: [
+                ["Advanced Excel", 0],
+                ["Pivot Tables", 0],
+                ["Ad-hoc Analysis", 0],
+              ],
+            },
+            {
+              cat: "Cloud & Tools",
+              chips: [
+                ["AWS S3", 0],
+                ["EC2", 0],
+                ["GitHub", 0],
+                ["Jupyter Notebook", 0],
+                ["Helium 10", 0],
+                ["Keepa", 0],
+              ],
+            },
+          ];
+          return `<div class="result-card show">
+        <div class="card-header"><div class="ch-left"><span class="ch-label">full_stack_view</span><span class="ch-rows">14 rows returned</span></div><span class="ch-time">0.001s</span></div>
+        <div class="stack-body">${groups.map((g) => `<div class="stack-group"><div class="stack-cat-label">${g.cat}</div><div class="stack-items">${g.chips.map(([t, e]) => `<span class="stack-chip ${e ? "expert" : ""}">${t}</span>`).join("")}</div></div>`).join("")}</div>
+      </div>`;
+        },
 
-        contact: () => `
-      <div class="result-block show">
-        <div class="result-header"><div class="rh-left"><span class="rh-label">contact_info</span><span class="rh-rows">6 rows returned</span></div><span class="rh-time">0.001s</span></div>
-        <div class="contact-grid">
-          <div class="contact-field"><div class="cf-key">name</div><div class="cf-val">Shashank Raj</div></div>
-          <div class="contact-field"><div class="cf-key">role</div><div class="cf-val">Data Analyst</div></div>
-          <div class="contact-field"><div class="cf-key">email</div><div class="cf-val"><a href="mailto:shashankraj1010@gmail.com">shashankraj1010@gmail.com</a></div></div>
-          <div class="contact-field"><div class="cf-key">phone</div><div class="cf-val"><a href="tel:+918269607817">+91 82696 07817</a></div></div>
-          <div class="contact-field"><div class="cf-key">location</div><div class="cf-val">Pune, Maharashtra, India</div></div>
-          <div class="contact-field"><div class="cf-key">status</div><div class="cf-val"><span class="cell-tag tag-green">● Open to opportunities</span></div></div>
-          <div><div class="cf-key">linkedin</div><div class="cf-val"><a href="#">linkedin.com/in/shashankraj ↗</a></div></div>
-          <div><div class="cf-key">github</div><div class="cf-val"><a href="#">github.com/shashankraj ↗</a></div></div>
+        contact: () => `<div class="result-card show">
+      <div class="card-header"><div class="ch-left"><span class="ch-label">contact_info</span><span class="ch-rows">8 rows returned</span></div><span class="ch-time">0.001s</span></div>
+      <div class="contact-body">
+        <div class="contact-grid-inner">
+          <div class="contact-field"><div class="cf-k">name</div><div class="cf-v">Shashank Raj</div></div>
+          <div class="contact-field"><div class="cf-k">role</div><div class="cf-v">Data Analyst</div></div>
+          <div class="contact-field"><div class="cf-k">email</div><div class="cf-v"><a href="mailto:shashankraj1010@gmail.com">shashankraj1010@gmail.com</a></div></div>
+          <div class="contact-field"><div class="cf-k">phone</div><div class="cf-v"><a href="tel:+918269607817">+91 82696 07817</a></div></div>
+          <div class="contact-field"><div class="cf-k">location</div><div class="cf-v">Pune, Maharashtra, India</div></div>
+          <div class="contact-field"><div class="cf-k">status</div><div class="cf-v"><span style="color:var(--accent)">● Open to opportunities</span></div></div>
+          <div class="contact-field"><div class="cf-k">linkedin</div><div class="cf-v"><a href="#">linkedin.com/in/shashankraj ↗</a></div></div>
+          <div class="contact-field"><div class="cf-k">github</div><div class="cf-v"><a href="#">github.com/shashankraj ↗</a></div></div>
         </div>
-        <div style="padding:0 1.5rem 1.5rem;"><a href="mailto:shashankraj1010@gmail.com" class="hire-btn">INSERT INTO team VALUES ('Shashank');</a></div>
-      </div>`,
+        <a href="mailto:shashankraj1010@gmail.com" class="hire-cta">INSERT INTO team VALUES ('Shashank'); →</a>
+      </div>
+    </div>`,
       };
 
-      // ---- TYPEWRITER ----
+      // Plain-text versions for typewriter animation
+      const QUERY_PLAIN = {
+        profile:
+          "SELECT\n  name, role, location, experience,\n  status, education\nFROM analyst_profile\nWHERE id = 1;",
+        skills:
+          "SELECT\n  skill_name, category,\n  proficiency_pct, level\nFROM technical_skills\nORDER BY proficiency_pct DESC;",
+        experience:
+          "SELECT\n  company, role, period,\n  key_achievement, impact_pct\nFROM work_experience\nORDER BY start_date DESC;",
+        projects:
+          "SELECT\n  project_name, type,\n  tools_used, outcome\nFROM projects\nWHERE featured = TRUE\nORDER BY impact DESC;",
+        certs:
+          "SELECT\n  cert_name, issuer,\n  platform, issued_date\nFROM certifications\nORDER BY issued_date DESC;",
+        education:
+          "SELECT\n  degree, institution,\n  specialization, graduation_year\nFROM education\nWHERE analyst_id = 1;",
+        impact:
+          "SELECT\n  metric, value, context\nFROM impact_summary\nWHERE analyst_id = 1;",
+        stack:
+          "SELECT\n  tool, category, expertise\nFROM full_stack_view\nORDER BY category, expertise DESC;",
+        contact:
+          "SELECT\n  field, value\nFROM contact_info\nWHERE analyst_id = 1;",
+      };
+
+      let currentQuery = "profile";
       let typeTimer = null;
-      function typeQuery(sqlText, callback) {
-        clearTimeout(typeTimer);
-        const querySpan = document.getElementById("query-text");
-        if (!querySpan) return;
-        querySpan.innerHTML = "";
+
+      function typeQuery(name, onDone) {
+        const el = document.getElementById("query-text");
+        if (!el) return;
+        const plain = QUERY_PLAIN[name] || "";
+        clearInterval(typeTimer);
+        el.textContent = "";
         let i = 0;
-        function writeChar() {
-          if (i >= sqlText.length) {
-            if (callback) callback();
-            return;
+        const speed = 22;
+        typeTimer = setInterval(() => {
+          el.textContent = plain.slice(0, ++i);
+          if (i >= plain.length) {
+            clearInterval(typeTimer);
+            el.innerHTML = QUERY_TEXTS[name] || plain;
+            if (onDone) onDone();
           }
-          const ch = sqlText[i++];
-          if (ch === "\n") querySpan.innerHTML += "\n";
-          else if (ch === " ") querySpan.innerHTML += " ";
-          else querySpan.innerHTML += ch;
-          typeTimer = setTimeout(writeChar, i < 10 ? 0 : 22);
-        }
-        writeChar();
+        }, speed);
       }
 
-      // ---- SHOW RESULT ----
-      let currentQuery = "profile";
-      function showResult(queryId) {
+      function showResult(name) {
         const container = document.getElementById("result-container");
         if (!container) return;
-        const generator = RESULT_GENERATORS[queryId];
-        if (generator) {
-          container.innerHTML = generator();
-          setTimeout(() => {
-            document.querySelectorAll(".pct-fill").forEach((bar) => {
-              const w = parseFloat(bar.dataset.w);
-              if (!isNaN(w)) bar.style.transform = `scaleX(${w})`;
-            });
-            document.querySelectorAll(".counter").forEach((counter) => {
-              const target = parseInt(counter.dataset.val, 10);
-              let start = null;
-              function animate(now) {
-                if (!start) start = now;
-                const p = Math.min((now - start) / 1200, 1);
-                const eased = 1 - Math.pow(1 - p, 3);
-                counter.textContent = Math.round(eased * target);
-                if (p < 1) requestAnimationFrame(animate);
-              }
-              requestAnimationFrame(animate);
-            });
-          }, 60);
-        } else {
+        const gen = RESULTS[name];
+        if (!gen) {
           container.innerHTML =
-            '<div class="result-block show">⚠️ Data not found</div>';
+            '<div class="result-card show" style="padding:2rem;color:var(--ink3)">No data found.</div>';
+          return;
         }
+        container.innerHTML = gen();
         setTimeout(() => {
-          document
-            .getElementById("results")
-            ?.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 200);
+          document.querySelectorAll(".skill-fill").forEach((b) => {
+            const w = parseFloat(b.dataset.w);
+            if (!isNaN(w)) b.style.transform = `scaleX(${w})`;
+          });
+          document.querySelectorAll(".counter").forEach((el) => {
+            const target = parseInt(el.dataset.val, 10);
+            let start = null;
+            const animate = (now) => {
+              if (!start) start = now;
+              const p = Math.min((now - start) / 1200, 1);
+              el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target);
+              if (p < 1) requestAnimationFrame(animate);
+            };
+            requestAnimationFrame(animate);
+          });
+        }, 80);
+        setTimeout(
+          () =>
+            document
+              .getElementById("results")
+              ?.scrollIntoView({ behavior: "smooth", block: "start" }),
+          200,
+        );
       }
 
-      function runQuery(name, e) {
-        if (e) e.preventDefault();
+      function runQuery(name) {
         if (!QUERY_TEXTS[name]) return;
         currentQuery = name;
-        // Update active states
-        document.querySelectorAll(".db-item").forEach((el) => {
-          const onclickAttr = el.getAttribute("onclick");
-          if (onclickAttr && onclickAttr.includes(`'${name}'`))
-            el.classList.add("active");
-          else el.classList.remove("active");
-        });
-        document.querySelectorAll(".qnav-btn").forEach((btn) => {
-          const onclickAttr = btn.getAttribute("onclick");
-          if (onclickAttr && onclickAttr.includes(`'${name}'`))
-            btn.classList.add("active");
-          else btn.classList.remove("active");
-        });
-        typeQuery(QUERY_TEXTS[name], () => showResult(name));
+        document
+          .querySelectorAll(".nav-item")
+          .forEach((el) =>
+            el.classList.toggle(
+              "active",
+              el.getAttribute("onclick")?.includes(`'${name}'`),
+            ),
+          );
+        document
+          .querySelectorAll(".qnav-pill")
+          .forEach((el) =>
+            el.classList.toggle(
+              "active",
+              el.getAttribute("onclick")?.includes(`'${name}'`),
+            ),
+          );
+        // Clear results while typing
+        const container = document.getElementById("result-container");
+        if (container) container.innerHTML = "";
+        typeQuery(name, () => showResult(name));
       }
 
       function runCurrentQuery() {
         runQuery(currentQuery);
       }
 
-      // ---- RESUME DOWNLOAD ----
       function downloadResume() {
-        // Create a dummy PDF-like file (in reality you would replace with actual resume PDF)
-        const resumeContent = `Shashank Raj - Data Analyst
-Contact: shashankraj1010@gmail.com | +91 82696 07817
-Pune, India
-
-Experience:
-- Data Analyst at Aurafloral Studio (Nov 2025 – Present)
-- Trainee Analyst at RB2F (Jun – Oct 2025)
-
-Skills: Python, SQL, Power BI, EDA, Excel, AWS
-Education: B.Tech CSE (Cloud Computing) - MIT ADT University, 2025
-Certifications: Tata Data Visualization, Deloitte Data Analytics, AWS Cloud Internship
-Projects: Banking Risk Analytics Dashboard (85% accuracy)
-Achievements: 55% faster reporting, 8% revenue uplift, 400+ listings optimized
-`;
-        const blob = new Blob([resumeContent], { type: "application/pdf" });
-        const link = document.createElement("a");
-        const url = URL.createObjectURL(blob);
-        link.href = url;
-        link.download = "Shashank_Raj_Resume.pdf";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
+        const c = `SHASHANK RAJ — Data Analyst\nshashankraj1010@gmail.com | +91 82696 07817 | Pune, India\n\nEXPERIENCE\nData Analyst — Aurafloral Studio (Nov 2025 – May 2026)\n• 100+ product listings optimised across Amazon & Flipkart\n• Python automation: 20 hrs → 8 hrs/week reporting (55% faster)\n• Power BI dashboards for sales, pricing & inventory; 5 hrs/week cleaning saved\n• 8% revenue improvement via multi-dimensional analysis\n\nTrainee — RB2F (Jun – Oct 2025)\n• 300+ Amazon listings optimised with Helium 10 & Keepa\n• 40% reduction in manual effort via Pandas pipelines\n• 15% revenue and 15% ROI increase\n\nSKILLS\nPython (Pandas, NumPy) | SQL (MySQL) | Power BI (DAX, Power Query)\nAdvanced Excel | AWS S3 & EC2 | GitHub | Jupyter Notebook\n\nPROJECTS\n• Banking Risk Analytics Dashboard — 85% credit default prediction accuracy\n• Business & Customer Insights — EDA, segmentation, loyalty analysis\n• Sales Performance Analysis — Revenue trends & profitability dashboards\n\nEDUCATION\nB.Tech CSE (Cloud Computing) — MIT ADT University, Nov 2025\n\nCERTIFICATIONS\n• Tata Data Visualization — TATA Group / Forage (Jan 2025)\n• Deloitte Data Analytics — Deloitte / Forage (Aug 2025)\n• AWS Cloud Virtual Internship — Eduskills (Jul 2023)`;
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([c], { type: "text/plain" }));
+        a.download = "Shashank_Raj_Resume.txt";
+        a.click();
       }
 
-      // ---- ATTACH SIDEBAR CLICK HANDLERS ----
-      document.querySelectorAll(".db-item").forEach((el) => {
-        el.addEventListener("click", function (e) {
-          e.preventDefault();
-          const onclickAttr = this.getAttribute("onclick");
-          if (onclickAttr) {
-            const match = onclickAttr.match(/'([^']+)'/);
-            if (match) runQuery(match[1]);
-          }
-        });
-      });
-
-      // ---- INITIAL LOAD ----
-      window.addEventListener("load", () => {
-        runQuery("profile");
-      });
+      window.addEventListener("load", () => runQuery("profile"));
     </script>
   </body>
 </html>
